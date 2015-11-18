@@ -1,0 +1,38 @@
+                        
+                            p1 view
+
+
+          player 1 <p1 score>            player 2 <p2 score>
+
+
+          <board>                                  |  <p1 tile rack>
+          <board>                                  |  <p1 tile rack>
+          <board>                                  |  <p1 tile rack>
+          <board>                                  |  <p1 tile rack>
+          <board>                                  |  <p1 tile rack>
+          <board>                                  |  <p1 tile rack>
+
+          <p1 key bindings>
+
+          <tile bag>
+                        
+                            p2 view
+
+
+          player 1 <p1 score>            player 2 <p2 score>
+
+
+          <board>                                  |  <p2 tile rack>
+          <board>                                  |  <p2 tile rack>
+          <board>                                  |  <p2 tile rack>
+          <board>                                  |  <p2 tile rack>
+          <board>                                  |  <p2 tile rack>
+          <board>                                  |  <p2 tile rack>
+
+          <p2 key bindings>
+
+store game in format
+
+ shared data                  ||p1 data                              ||p2 data
+ _____________________________||_____________________________________||___________________________________
+| board data | tile bag data  ||p1 score data | p1 key binding data  ||p1 score data | p1 key binding data|
