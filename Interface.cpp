@@ -86,6 +86,7 @@
                     else{
                         cout<<"It's not your turn!"<<endl;
                         system("sleep .6");
+                        putAllBack();
                     }
                     system("clear");
                     print();

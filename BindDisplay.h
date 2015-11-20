@@ -2,7 +2,7 @@
 #define BIND_DISPLAY
 #include "globals.h"
 
-enum MODES {DEFAULT,HIGHLIGHTED,SELECTED};
+enum MODES {DEFAULT,HIGHLIGHTED,SELECTED,ERROR};
 
 class BindDisplay{
     public:

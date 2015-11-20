@@ -11,6 +11,7 @@ class bottomDisplay{
         string header;
         string headerDefault;
         string headerHighlighted;
+        string headerError;
         int mode;
         int xNdx;
         int yNdx;
@@ -24,6 +25,7 @@ class bottomDisplay{
         void repaint();
         string generateHeaderSelected();
         string getKeyName(char key);
+        BindDisplay* checkAlreadyMapped(char input);
         int getKeyNdx(char key);
         void setBinding(int key,char keyChar);
 };

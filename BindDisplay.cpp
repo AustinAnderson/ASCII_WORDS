@@ -37,15 +37,20 @@
                 close=")";
                 color=BKGRND_WHT;
             }
-            if(mode==HIGHLIGHTED){
+            else if(mode==HIGHLIGHTED){
                 open="{";
                 close="}";
                 color=BKGRND_GRN;
             }
-            if(mode==SELECTED){
-                open="(";
-                close=")";
+            else if(mode==SELECTED){
+                open="*";
+                close="*";
                 color=BKGRND_YLW;
+            }
+            else if(mode==ERROR){
+                open="*";
+                close="*";
+                color=BKGRND_RED;
             }
 
             toReturn=color+toReturn;

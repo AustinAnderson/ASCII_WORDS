@@ -36,6 +36,12 @@
         headerHighlighted+="                       press back to return to game\n\n";
         headerHighlighted+="                     press submit to save preferences\n";
 
+        headerError="\n";
+        headerError+="                                Can't map key\n\n";
+        headerError+="                          Given key already mapped!!\n";
+        headerError+="\n\n";
+        headerError+="\n";
+
         mode=DEFAULT;
         header=headerDefault;
     }
@@ -69,7 +75,7 @@
             else if(input==(*keyBindings)[DOWN]){
                 contentMat[yNdx][xNdx].setMode(DEFAULT);
                 if(yNdx==0&&xNdx==1){    //*  * null null
-                    yNdx=1;              //  \|/
+                    yNdx=1;              //   |
                     xNdx=3;              //****
                 }
                 else if(yNdx<(contentMat.size()-1)){
@@ -111,11 +117,23 @@
                 repaint();
                 while(!kbhit());//wait for input
                 char newKey=getch();
-                contentMat[yNdx][xNdx].setMode(HIGHLIGHTED);
+
+                BindDisplay* getAlreadyMapped=checkAlreadyMapped(newKey);
                 if(newKey!=(*keyBindings)[BACK]){
-                    setBinding(getKeyNdx(contentMat[yNdx][xNdx].getBound()),newKey);
-                    contentMat[yNdx][xNdx].setBound(newKey);
+                    if(getAlreadyMapped!=NULL){
+                        getAlreadyMapped->setMode(ERROR);
+                        header=headerError;
+                        repaint();
+                        while(!kbhit());
+                        getch();//eat that input so it won't break the next loop
+                        getAlreadyMapped->setMode(DEFAULT);
+                    }
+                    else{
+                        setBinding(getKeyNdx(contentMat[yNdx][xNdx].getBound()),newKey);
+                        contentMat[yNdx][xNdx].setBound(newKey);
+                    }
                 }
+                contentMat[yNdx][xNdx].setMode(HIGHLIGHTED);
                 header=headerHighlighted;
                 repaint();
             }
@@ -149,6 +167,19 @@
             (*keyBindings)[key]=keyChar;
         }
     }
+    BindDisplay* bottomDisplay::checkAlreadyMapped(char input){
+        BindDisplay* toReturn=NULL;
+        for(int i=0;i<contentMat.size();i++){
+            for(int j=0;j<contentMat[0].size();j++){
+                if((i==0&&j<2)||i!=0){//fix jagged matrix seg fault
+                    if(contentMat[i][j].getBound()==input){
+                        toReturn=&contentMat[i][j];
+                    }
+                }
+            }
+        }
+        return toReturn;
+    }
     string bottomDisplay::generateHeaderSelected(){
         string toReturn="\n";
         toReturn+="                      press desired button for ";
@@ -165,6 +196,9 @@
             if((*keyBindings)[i]==key){
                 found=true;
             }
+        }
+        if(i==NUM_BOUND_KEYS+1){
+            i=0;
         }
         return i-1;
     }
