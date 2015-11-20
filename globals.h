@@ -18,6 +18,12 @@
 
 using namespace std;
 
+enum KeyBindings{REBIND,UP,DOWN,LEFT,RIGHT,
+    SUBMIT,CONFIRM,BACK,CLEAR,QUIT,NUM_BOUND_KEYS};
+
+const string KeyNames[NUM_BOUND_KEYS]={"Rebind","Up","Down","Left","Right",
+    "Submit","Confirm","Back","Clear","Quit"};//these must match the above
+
 //toggle colors
 //*
 const string WORD_VALID="\e[1;90;48;5;106m";
@@ -48,5 +54,9 @@ const string validLetters="ABCDEFGHIJKLMNOPQRSTUVWXYZ@ ";
  
 //from cboard.cprogramming.com/c-programming/63166-kbhit-linux.html
 int kbhit();
+
+//get char that supports arrow keys
+// uses ^ V < > for returned direction
+char getch();
 
 #endif
