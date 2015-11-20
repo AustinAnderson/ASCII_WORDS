@@ -26,12 +26,7 @@ class Rack{
 
         void setTile(int ndx,char let);
 
-        friend ostream& operator<<(ostream& os,Rack& r){
-            for(int i=0;i<r.tiles.size();i++){
-                os<<r.tiles[i]<<" ";
-            }
-            return os;
-        }
+        friend ostream& operator<<(ostream& os,Rack& r);
     private:
         void clearTile(int ndx);
         string space;

@@ -32,14 +32,12 @@
             cout<<"|                |                                       |                 |"<<endl;           
             cout<<"| player 1: "<<points2Str(p1)<<" |                                       |  player 2: "<<points2Str(p2)<<" |"<<endl;           
             cout<<"|________________|                                       |_________________|"<<endl;
-            cout<<endl;
         }
         else{
             cout<<" ________________                                         _________________   "<<endl;            
             cout<<"|                |         =======_______=======         |                 | "<<endl;             
             cout<<"| player 1: "<<points2Str(p1)<<" |          ) Play Move? Y/N (           |  player 2: "<<points2Str(p2)<<" | "<<endl;             
             cout<<"|________________|         /__====******====__\\          |_________________| "<<endl;              
-            cout<<endl;
         }
     }
 //private:

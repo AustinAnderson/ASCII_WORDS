@@ -24,3 +24,24 @@ int kbhit(void){
  
     return 0;
 }
+
+char getch(){
+    char toReturn=getchar();
+    if(toReturn==char(27)){
+        getchar();
+        toReturn=getchar();
+        if(toReturn==char(65)){
+            toReturn='^';
+        }
+        else if(toReturn==char(66)){
+            toReturn='V';
+        }
+        else if(toReturn==char(67)){
+            toReturn='>';
+        }
+        else if(toReturn==char(68)){
+            toReturn='<';
+        }
+    }
+    return toReturn;
+}

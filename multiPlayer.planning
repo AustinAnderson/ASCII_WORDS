@@ -36,3 +36,7 @@ store game in format
  shared data                  ||p1 data                              ||p2 data
  _____________________________||_____________________________________||___________________________________
 | board data | tile bag data  ||p1 score data | p1 key binding data  ||p1 score data | p1 key binding data|
+
+
+
+

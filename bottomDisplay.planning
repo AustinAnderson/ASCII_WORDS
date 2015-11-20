@@ -1,0 +1,45 @@
+(ENTER)
+( ESC )
+(BKSPC)
+(  UP )
+( DOWN)
+( LEFT)
+(RIGHT)
+( CTRL)
+(SHIFT)
+(SPACE)
+( TAB )
+(  c  )
+
+default when below game board
+*game board up here*
+
+                             
+                                key bindings: 
+  edit keys: (  b  )                                       quit: (  q  )\n";
+         up: (  i  ) down: (  k  )         left: (  j  )  right: (  l  )\n";
+    confirm: (  f  ) back: (  d  )  clear tiles: (  c  ) submit: (ENTER)";
+
+when selecting mapping to change
+
+              select key to remap with current direction keys
+                      then press confirm to remap
+
+                    press back to return to game
+
+                  press submit to save preferences
+     //green
+  up: {  i  }  down: (  k  ) left: (  j  )  right: (  l  )  confirm: (  f  ) 
+     back: (  d  ) clear tiles: (  c  ) submit: (ENTER)  quit: (  q  )
+
+after pressing the key assigned to confirm
+
+                   press desired button for &KeyNames[current]&
+                    
+
+                     press back to return selection
+
+                       
+     //yellow
+  up: *  i  *  down: (  k  ) left: (  j  )  right: (  l  )  confirm: (  f  ) 
+     back: (  d  ) clear tiles: (  c  ) submit: (ENTER)  quit: (  q  )

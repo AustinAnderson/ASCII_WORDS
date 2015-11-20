@@ -2,14 +2,18 @@
 //public:
     Interface::Interface(){
         player=true;
-        char_up='i';
-        char_down='k';
-        char_left='j';
-        char_right='l';
-        char_enter='f';
-        char_submit='\n';
-        char_back='d';
-        char_quit='q';
+        keyBindings=vector<char>(NUM_BOUND_KEYS);
+        keyBindings[UP]='i';
+        keyBindings[DOWN]='k';
+        keyBindings[LEFT]='j';
+        keyBindings[RIGHT]='l';
+        keyBindings[CONFIRM]='f';
+        keyBindings[SUBMIT]='\n';
+        keyBindings[BACK]='d';
+        keyBindings[CLEAR]='c';
+        keyBindings[REBIND]='b';
+        keyBindings[QUIT]='q';
+        bottom.init(&keyBindings);
         choosingTile=false;
         message.push_back("      @ is blank");
         message.push_back("         tile  ");
@@ -37,10 +41,7 @@
             }
             cout<<endl;
         }
-        vector<string> bottomdisp=bottom.print();
-        for(int i=0;i<bottomdisp.size();i++){
-            cout<<bottomdisp[i]<<endl;
-        }
+        cout<<bottom.print()<<endl;
     }
     void Interface::play(){//        r  c
         system("resize -s 44 100");
@@ -52,26 +53,26 @@
             char pressed='\0';
             if(kbhit()){
             //    updateGame();///////////////////////////////////////////////////////////////////
-                pressed=getchar();
-                if(pressed==char_up){
+                pressed=getch();
+                if(pressed==keyBindings[UP]){
                     up();
                 }
-                else if(pressed==char_down){
+                else if(pressed==keyBindings[DOWN]){
                     down();
                 }
-                else if(pressed==char_left){
+                else if(pressed==keyBindings[LEFT]){
                     left();
                 }
-                else if(pressed==char_right){
+                else if(pressed==keyBindings[RIGHT]){
                     right();
                 }
-                else if(pressed==char_submit){
+                else if(pressed==keyBindings[SUBMIT]){
                     system("clear");
                     if(player){
                         score.toggleCommitting();
                         print();//use kbhit instead of cin, allows us to
-                        while(!kbhit()){}//block until answered, but not depend on enter key
-                        pressed=getchar();
+                        while(!kbhit());//block until answered, but not depend on enter key
+                        pressed=getch();
                         if(pressed=='y'||pressed=='Y'){
                             int newScore=guy.board.checkAndCommit(); 
                             if(newScore>0){
@@ -89,7 +90,7 @@
                     system("clear");
                     print();
                 }
-                else if(pressed==char_enter){
+                else if(pressed==keyBindings[CONFIRM]){
                     if(!choosingTile){
                         toggleSelecting();
                     }
@@ -97,7 +98,7 @@
                         chooseTile();
                     }
                 }
-                else if(pressed==char_back){
+                else if(pressed==keyBindings[BACK]){
                     if(choosingTile){
                         toggleSelecting();
                     }
@@ -105,7 +106,15 @@
                         putTileBack();
                     }
                 }
-                else if(pressed==char_quit){
+                else if(pressed==keyBindings[CLEAR]){
+                    putAllBack();
+                }
+                else if(pressed==keyBindings[REBIND]){
+                    bottom.rebind();//takes over control with similar structure
+                    system("clear");
+                    print();
+                }
+                else if(pressed==keyBindings[QUIT]){
                     done=true;
                 }
             }
@@ -116,12 +125,6 @@
     }
 //private:
     
-    //void updateGame(){//////////////////////////////////////
-    //    if(!true/*p1wordsp2.lck is found*/){
-    //        //open gamefile
-    //        gamefile>>*this;
-    //    }
-   // }
     string Interface::getInitialSize(){
         stringstream format;
         format<<"resize -s ";
@@ -145,6 +148,19 @@
             }
 
         }
+    }
+    void Interface::putAllBack(){
+        string tentatives=guy.board.clearAll();
+        for(int i=0;i<tentatives.size();i++){
+            int blankspot=guy.rack.getNextBlankNdx();
+            if(blankspot!=-1){
+                guy.rack.setTile(blankspot,tentatives[i]);
+            }
+        }
+        guy.board.setTentative(false);
+        system("clear");
+        print();
+
     }
     void Interface::chooseTile(){
         toggleSelecting();

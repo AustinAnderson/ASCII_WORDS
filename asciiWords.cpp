@@ -14,7 +14,7 @@ int main(int argc, char** argv){
     interface.play();
     ofstream bob;
     bob.open("./testOut.txt");
-    bob<<interface<<endl;
+    //bob<<interface<<endl;
     bob.close();
     return 0;
 }

@@ -1,4 +1,4 @@
-allO=asciiWords.o Board.o bottomDisplay.o globals.o\
+allO=asciiWords.o Board.o bottomDisplay.o globals.o BindDisplay.o\
 	 Interface.o Player.o Rack.o Scores.o Tile.o TileBag.o
 CXX=g++
 oDir=oFiles/
@@ -16,7 +16,9 @@ asciiWords.o: asciiWords.cpp Interface.h globals.h \
 
 Board.o: Board.cpp Board.h globals.h Tile.h
 
-bottomDisplay.o: bottomDisplay.cpp bottomDisplay.h globals.h
+bottomDisplay.o: bottomDisplay.cpp bottomDisplay.h BindDisplay.h globals.h
+
+BindDisplay.o: BindDisplay.cpp BindDisplay.h globals.h
 
 Interface.o: Interface.cpp Interface.h globals.h bottomDisplay.h Player.h \
  Board.h Tile.h TileBag.h Rack.h Scores.h

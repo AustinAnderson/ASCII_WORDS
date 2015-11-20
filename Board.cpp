@@ -110,6 +110,31 @@
             currentTentativeSum=0;
         }
     }
+    string Board::clearAll(){
+        string toReturn="";
+        for(int i=0;i<mat.size();i++){
+            for(int j=0;j<mat[0].size();j++){
+                if(mat[i][j].isTentative()){
+                    toReturn.push_back(mat[i][j].getLetter());
+                    if(i==xNdx&&j==yNdx){
+                        mat[i][j].set(' ',false);
+                    }
+                    else{
+                        mat[i][j].set(' ',false,false);
+                    }
+                    if(toReturn.size()>7){
+                        cerr<<"board got out of sync your game is ruined :("<<endl;
+                        exit(1);
+                    }
+                }
+            }
+        }
+        currentPlacementValid();
+        currentWordsValid();
+        currentTentativeSum=0;
+        return toReturn;
+    }
+
     char Board::getCurrentTile(){
         return mat[xNdx][yNdx].getLetter();
     }

@@ -21,20 +21,8 @@ class TileBag{
          */
         char pullTile();
 
-        friend ostream& operator<<(ostream& os,TileBag& tb){
-            for(int i=0;i<27;i++){
-                os<<tb.tilesLeft[i]<<" ";
-            }
-            return os;
-        }
-        friend istream& operator>>(istream& is,TileBag& tb){
-            int let=0;
-            for(int i=0;i<27;i++){
-                is>>let;
-                tb.tilesLeft[i]=let;
-            }
-            return is;
-        }
+        friend ostream& operator<<(ostream& os,TileBag& tb);
+        friend istream& operator>>(istream& is,TileBag& tb);
     private:
         //take advantage of the fact that alphabet in ascii
         //is contiguous from @toZ

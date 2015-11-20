@@ -12,18 +12,15 @@ class Player{
 
         void chooseTile();
 
-        void refilTiles();
+        void refilTiles();//all of them
 
-        void replaceTile();
+        void replaceTile();//on the rack
 
         friend class Interface;
 
-        friend ostream& operator<<(ostream& os,Player& p){
-            os<<p.board;
-            os<<p.bag;
-            os<<p.rack;
-            return os;
-        }
+        friend ostream& operator<<(ostream& os,Player& p);
+        friend istream& operator>>(istream& is,Player& p);
+
     private:
         Board board;
         TileBag bag;

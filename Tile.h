@@ -32,14 +32,8 @@ class Tile{
         //only to be called during construction of board
         void setMod(string newMod);
 
-        friend ostream& operator<<(ostream& os,Tile& t){
-            os<<t.letter<<" "<<t.tentative<<" "<<t.selecting<<" "<<t.modifier<<" ";
-            return os;
-        }
-        friend istream& operator>>(istream& is,Tile& t){
-            is>>t.letter>>t.tentative>>t.selecting>>t.modifier;
-            return is;
-        }
+        friend ostream& operator<<(ostream& os,Tile& t);
+        friend istream& operator>>(istream& is,Tile& t);
     private:
         string points2Str(int points);
 

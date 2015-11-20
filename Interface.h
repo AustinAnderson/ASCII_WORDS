@@ -4,6 +4,8 @@
 #include "bottomDisplay.h"
 #include "Player.h"
 #include "Scores.h"
+
+
 class Interface{
     public:
         Interface();
@@ -12,17 +14,9 @@ class Interface{
 
         void play();
 
-        friend ostream& operator<<(ostream& os,Interface& game){
-            os<<game.score;
-            os<<game.guy;
-        }
+        friend ostream& operator<<(ostream& os,Interface& game);
+        friend istream& operator>>(istream& is,Interface& game);
     private:
-        //void updateGame(){//////////////////////////////////////
-        //    if(!true/*p1wordsp2.lck is found*/){
-        //        //open gamefile
-        //        gamefile>>*this;
-        //    }
-       // }
         string getInitialSize();
 
         string setScreenBack;
@@ -31,6 +25,8 @@ class Interface{
         //if backspace
         
         void putTileBack();
+
+        void putAllBack();//resets the board to where it was after last submission
 
         void chooseTile();
 
@@ -44,14 +40,8 @@ class Interface{
 
         void right();
 
-        char char_up;
-        char char_down;
-        char char_left;
-        char char_right;
-        char char_submit;
-        char char_enter;
-        char char_back;
-        char char_quit;
+        vector<char> keyBindings;
+
 
         bool choosingTile;
         Scores score;
