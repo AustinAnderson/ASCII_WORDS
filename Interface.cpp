@@ -1,6 +1,6 @@
 #include "Interface.h"
 //public:
-    Interface::Interface(){
+    Interface::Interface(string bindPreferencesPath){
         player=true;
         keyBindings=vector<char>(NUM_BOUND_KEYS);
         keyBindings[UP]='i';
@@ -13,7 +13,6 @@
         keyBindings[CLEAR]='c';
         keyBindings[REBIND]='b';
         keyBindings[QUIT]='q';
-        bottom.init(&keyBindings);
         choosingTile=false;
         message.push_back("      @ is blank");
         message.push_back("         tile  ");
@@ -23,9 +22,33 @@
         message.push_back("       desired ");
         message.push_back("        letter ");
         message.push_back("");
+        setScreenBack=getInitialSize();
+        //set bindings from file
+        ifstream readInBindings;
+        readInBindings.open(bindPreferencesPath);
+        if(readInBindings){
+            for(int i=0;i<keyBindings.size();i++){
+                //using .get to support mapping space and enter
+                char next='\0';
+                readInBindings.get(next);
+                keyBindings[i]=next;
+            }
+        }
+        else{
+            string path=bindPreferencesPath;
+            if(bindPreferencesPath==""){
+                path="(none specified)";
+            }
+            cerr<<"WARNING: Unable to read saved key bindings"<<endl;
+            cerr<<"         from "<<path<<endl;
+            cerr<<"         Using defaults"<<endl;
+            cerr<<"         Press any key to continue..."<<endl;
+            while(!kbhit());
+        }
+        bottom.init(&keyBindings,bindPreferencesPath);
         system("clear");
         print();
-        setScreenBack=getInitialSize();
+
     }
     void Interface::print(){
 
@@ -212,4 +235,13 @@
         system("clear");
         print();
     }
-
+/*
+    ostream& operator<<(ostream& os,Interface& game){
+        os<<game.score;
+        os<<game.guy;
+        return os;
+    }
+    istream& operator>>(istream& is,Interface& game){
+        return is;
+    }
+    */

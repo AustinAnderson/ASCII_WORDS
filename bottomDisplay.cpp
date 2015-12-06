@@ -1,7 +1,8 @@
 #include "bottomDisplay.h"
 #include "BindDisplay.h"
 //public:
-    void bottomDisplay::init(vector<char>* initialBindings){
+    void bottomDisplay::init(vector<char>* initialBindings,string writePreferencesTo){
+        bindPreferencesPath=writePreferencesTo;
         xNdx=0;
         yNdx=0;
         keyBindings=initialBindings;
@@ -142,7 +143,12 @@
                 contentMat[yNdx][xNdx].setMode(DEFAULT);
                 done=true;
             }
+            else if(input==(*keyBindings)[SUBMIT]){
+                savePreferences();
+            }
             else if(input==(*keyBindings)[QUIT]){
+                header=headerDefault;
+                contentMat[yNdx][xNdx].setMode(DEFAULT);
                 done=true;
             }
         }
@@ -158,6 +164,29 @@
         return toReturn;
     }
 //private:
+    void bottomDisplay::savePreferences(){
+        ofstream write;
+        write.open(bindPreferencesPath);
+        string filePath=bindPreferencesPath;
+        if(bindPreferencesPath==""){
+            filePath="(none specified)";
+        }
+        if(!write||bindPreferencesPath==""){
+            cerr<<endl;
+            cerr<<"WARNING: Unable to find target file "<<filePath<<endl;
+            cerr<<"         Keybindings won't be saved."<<endl;
+            cerr<<"         Press any key to continue..."<<endl;
+            while(!kbhit());
+        }
+        else{
+            for(int i=0;i<keyBindings->size();i++){
+            //needs to be spaceless for read in to work
+                write<<(*keyBindings)[i];
+            }
+            write.close();
+            cout<<"preferences saved"<<endl;
+        }
+    }
     void bottomDisplay::repaint(){
         system("clear");
         cout<<print()<<endl;
@@ -205,3 +234,12 @@
     string bottomDisplay::getKeyName(char key){
         return KeyNames[getKeyNdx(key)];
     }
+
+/*
+    ostream& operator<<(ostream& os,bottomDisplay& bottom){
+        for(int i=0;i<bottom.keyBindings->size();i++){
+            os<<(*(bottom.keyBindings))[i];
+        }
+        return os;
+    }
+*/

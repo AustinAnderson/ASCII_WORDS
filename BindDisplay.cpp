@@ -1,5 +1,7 @@
 #include "BindDisplay.h"
 
+//holds a pairing between the button and the key it's mapped to
+//as well as the current highlighting
 //public:
     BindDisplay::BindDisplay(){
         name="";

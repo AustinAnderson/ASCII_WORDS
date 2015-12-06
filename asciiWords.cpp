@@ -9,12 +9,11 @@
 #include "Interface.h"
 
 int main(int argc, char** argv){
-
-    Interface interface;
+    string keyBindingsPath="";
+    if(argc>1){
+        keyBindingsPath=argv[1];
+    }
+    Interface interface(keyBindingsPath);
     interface.play();
-    ofstream bob;
-    bob.open("./testOut.txt");
-    //bob<<interface<<endl;
-    bob.close();
     return 0;
 }

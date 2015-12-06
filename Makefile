@@ -3,7 +3,7 @@ allO=asciiWords.o Board.o bottomDisplay.o globals.o BindDisplay.o\
 CXX=g++
 oDir=oFiles/
 
-all:
+Words:
 		make --no-print-directory unclear
 		make --no-print-directory comp
 		make --no-print-directory clear
