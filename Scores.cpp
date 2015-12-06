@@ -57,3 +57,11 @@
     }
 
 
+    ostream& operator<<(ostream& os,Scores& s){
+        os<<s.p1<<" "<<s.p2<<" "<<s.committing<<" ";
+        return os;
+    }
+    istream& operator>>(istream& is,Scores& s){
+        is>>s.p1>>s.p2>>s.committing;
+        return is;
+    }

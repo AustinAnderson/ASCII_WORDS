@@ -25,6 +25,7 @@ class Player{
         Board board;
         TileBag bag;
         Rack rack;
+        Rack otherPlayersRack;
 };
 
 #endif//PLAYER

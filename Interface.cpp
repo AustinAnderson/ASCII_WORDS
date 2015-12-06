@@ -235,13 +235,22 @@
         system("clear");
         print();
     }
-/*
     ostream& operator<<(ostream& os,Interface& game){
-        os<<game.score;
-        os<<game.guy;
+        os<<game.player<<" ";
+        os<<game.score<<" ";
+        os<<game.guy<<" ";
         return os;
     }
     istream& operator>>(istream& is,Interface& game){
+        is>>game.player;
+        /*
+        if(player!=<passed in player>){
+            error message
+            while(!kbhit());
+            exit
+        }
+        */
+        is>>game.score;
+        is>>game.guy;
         return is;
     }
-    */

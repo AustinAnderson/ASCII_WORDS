@@ -27,6 +27,7 @@ class Rack{
         void setTile(int ndx,char let);
 
         friend ostream& operator<<(ostream& os,Rack& r);
+        friend istream& operator>>(istream& is,Rack& r);
     private:
         void clearTile(int ndx);
         string space;

@@ -33,9 +33,49 @@
 
 store game in format
 
- shared data                  ||p1 data                              ||p2 data
- _____________________________||_____________________________________||___________________________________
-| board data | tile bag data  ||p1 score data | p1 key binding data  ||p1 score data | p1 key binding data|
+game starts
+
+p1 moves
+
+p1 writes
+
+ shared data                                   ||my data      ||other data
+ ______________________________________________||_____________||______________
+| turn |score data| board data | tile bag data || p1 rack data||p2 rack data 
+
+p2 reads
+
+ shared data                                   ||my data      ||other data
+ ______________________________________________||_____________||______________
+| turn |score data| board data | tile bag data || p1 rack data||p2 rack data 
+
+if turn is p1 quit with message, else
+_______________________________________________||reads in rack||reads rack data
+                                               ||to its other || to its copy
+                                               ||    copy     ||
+
+p2 moves
+
+p2 writes
+
+
+ shared data                                   ||my data      ||other data
+ ______________________________________________||_____________||______________
+| turn |score data| board data | tile bag data || p2 rack data||p1 rack data 
+
+
+p1 reads
+
+ shared data                                   ||my data      ||other data
+ ______________________________________________||_____________||______________
+| turn |score data| board data | tile bag data || p2 rack data||p1 rack data 
+
+if turn is p2 quit with message, else
+_______________________________________________||reads in rack||reads rack data
+                                               ||to its other || to its copy
+                                               ||    copy     ||
+
+
 
 
 

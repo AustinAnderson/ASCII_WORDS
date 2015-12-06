@@ -77,3 +77,15 @@
         tiles[ndx].setMod("__");
     }
 
+    ostream& operator<<(ostream& os,Rack& r){
+        for(int i=0;i<r.tiles.size();i++){
+            os<<r.tiles[i]<<" ";
+        }
+        return os;
+    }
+    istream& operator>>(istream& is,Rack& r){
+        for(int i=0;i<r.tiles.size();i++){
+            is>>r.tiles[i];
+        }
+        return is;
+    }

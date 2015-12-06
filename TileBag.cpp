@@ -56,3 +56,17 @@
         }
         return toReturn;
     }
+    ostream& operator<<(ostream& os,TileBag& tb){
+        for(int i=0;i<27;i++){
+            os<<tb.tilesLeft[i]<<" ";
+        }
+        return os;
+    }
+    istream& operator>>(istream& is,TileBag& tb){
+        int let=0;
+        for(int i=0;i<27;i++){
+            is>>let;
+            tb.tilesLeft[i]=let;
+        }
+        return is;
+    }

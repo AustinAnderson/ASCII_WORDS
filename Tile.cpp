@@ -173,13 +173,12 @@
         validModifiers.push_back("TL");
         validModifiers.push_back("DL");
     }
-    map<char,int>* points;//only read, so just need one
-    pair<string,string> previousState;
-    vector<string> validModifiers;
-    string top;
-    
-    char letter;
-    bool tentative;
-    bool selecting;
-    string modifier;
 
+    ostream& operator<<(ostream& os,Tile& t){
+        os<<t.letter<<" "<<t.tentative<<" "<<t.selecting<<" "<<t.modifier<<" ";
+        return os;
+    }
+    istream& operator>>(istream& is,Tile& t){
+        is>>t.letter>>t.tentative>>t.selecting>>t.modifier;
+        return is;
+    }

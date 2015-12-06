@@ -31,3 +31,17 @@
         rack.setCurrentTile(bag.pullTile());
     }
 
+    ostream& operator<<(ostream& os,Player& p){
+        os<<p.board<<" ";
+        os<<p.bag<<" ";
+        os<<p.rack<<" ";
+        os<<p.otherPlayersRack<<" ";
+        return os;
+    }
+    istream& operator>>(istream& is,Player& p){
+        is>>p.board;
+        is>>p.bag;
+        is>>p.otherPlayersRack;
+        is>>p.rack;
+        return is;
+    }

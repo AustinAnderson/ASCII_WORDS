@@ -12,7 +12,6 @@ class bottomDisplay{
         //upperclass creates the initBindings in the first place
         //so the pointer passed to the constructor can't be set correctly
         void init(vector<char>* initialBindings,string writePreferencesTo);
-        friend ostream& operator<<(ostream& os,bottomDisplay& bottom);
     private:
         string header;
         string headerDefault;
