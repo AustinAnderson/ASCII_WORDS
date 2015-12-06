@@ -177,6 +177,7 @@
             cerr<<"         Keybindings won't be saved."<<endl;
             cerr<<"         Press any key to continue..."<<endl;
             while(!kbhit());
+            getch();
         }
         else{
             for(int i=0;i<keyBindings->size();i++){

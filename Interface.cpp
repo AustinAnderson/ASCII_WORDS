@@ -44,6 +44,7 @@
             cerr<<"         Using defaults"<<endl;
             cerr<<"         Press any key to continue..."<<endl;
             while(!kbhit());
+            getch();
         }
         bottom.init(&keyBindings,bindPreferencesPath);
         system("clear");
@@ -138,6 +139,27 @@
                     system("clear");
                     print();
                 }
+                /* to implement, need modify key bindings, including the visual
+                 * part in bottomDisplay, and need to add getLastWord to Player
+                 * class
+                else if(pressed==keyBindings[DEFINE]){
+                    string lastWord=guy.getLastWord();
+                    system("clear");
+                    cout<<lastWord<<endl;
+                    string command="curl -s";
+                    command+="www.merriam-webster.com/dictionary/";
+                    command+=lastWord;//look up the word on merriam-webster
+                    command+=" |tr '>' '\\n'|grep '</p'|"//trim out the excess
+                    command+="sed 's/<\\/p//g'|sed 's/?.*.//'";//html markings
+                    system(command);
+                    cout<<endl;
+                    cout<<"press any key to return to the game"<<endl;
+                    while(!kbhit());
+                    getch();
+                    system("clear");
+                    print();
+                }
+                */
                 else if(pressed==keyBindings[QUIT]){
                     done=true;
                 }
