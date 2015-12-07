@@ -10,10 +10,67 @@
 
 int main(int argc, char** argv){
     string keyBindingsPath="";
-    if(argc>1){
-        keyBindingsPath=argv[1];
+    bool newGame=false;
+    //thought about using getopt, but I'm not that good with it,
+    //plus it's a hassle for only one flag
+    if((argc==5||argc==4)&&argv[1][0]=='-'&&argv[1][1]=='n'){//short circuts if
+        newGame=true;                                        //[1][0]=='\0', so
+        for(int i=1;i<argc-1;i++){                  //safe to dereference [1][1]
+            argv[i]=argv[i+1];
+        }
+        argc--;
     }
-    Interface interface(keyBindingsPath);
-    interface.play();
+
+    if(argc!=4){
+        if(argc!=3){
+            cerr<<"Usage: "<<argv[0]<<" <player number> <game file> [key binding file]"<<endl;
+            cerr<<"               or, for a new game"<<endl;
+            cerr<<"       "<<argv[0]<<" -n 1 <game file> [key binding file]"<<endl;
+            exit(1);
+        }
+    }
+    else{
+        keyBindingsPath=argv[3];
+    }
+    char* error;
+    int playerNumber=(int) strtol(argv[1],&error,10);
+    if(*error!='\0'||(newGame&&playerNumber!=1)||(!newGame&&(playerNumber!=1&&playerNumber!=2))){
+        string user="       ";
+        user+=argv[0];
+        if(newGame){
+            user+=" -n";//for the display string, add back in the -n that was deleted
+            cerr<<"Error: player number must be 1 for a new game"<<endl;
+        }
+        else{
+            cerr<<"Error: player number must be 1 or 2"<<endl;
+        }
+        string location(user.size()+1,' ');
+        location+="^";
+        user+=" ";
+        user+=argv[1];
+        user+=" ";
+        user+=argv[2];
+        user+=" ";
+        user+=keyBindingsPath;//this is used to work in either case
+        cerr<<user<<endl;
+        cerr<<location<<endl;
+        exit(2);
+    }
+    bool player=!(playerNumber-1);//true player1 false player 2
+
+    //Interface interface(keyBindingsPath);
+    string gameFile=argv[2];
+    if(!newGame){//if its new, 
+        ifstream in;
+        in.open(gameFile);
+        if(!in){
+            cerr<<"Error: unable to open game file"<<endl;
+            cerr<<"       file name \""<<gameFile<<"\""<<endl;
+            cerr<<"       check the file path and try again"<<endl;
+            exit(3);
+        }
+        //in>>interface;
+    }
+    //interface.play();
     return 0;
 }

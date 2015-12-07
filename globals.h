@@ -8,6 +8,7 @@
 #include <list>
 #include <ctime>
 #include <cstdlib>
+#include <stdlib.h>
 #include <set>
 #include <sys/ioctl.h>
 
