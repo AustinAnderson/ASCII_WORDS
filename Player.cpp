@@ -2,9 +2,6 @@
 //public:
     Player::Player(){
         int ndx=0;
-        while((ndx=rack.getNextBlankNdx())!=-1){
-            rack.setTile(ndx,bag.pullTile());
-        }
     }
     vector<vector<string> > Player::toStrs(){
         vector<vector<string> > toReturn;
@@ -32,15 +29,15 @@
     }
 
     ostream& operator<<(ostream& os,Player& p){
-        os<<p.board<<" ";
         os<<p.bag<<" ";
+        os<<p.board<<" ";
         os<<p.rack<<" ";
         os<<p.otherPlayersRack<<" ";
         return os;
     }
     istream& operator>>(istream& is,Player& p){
-        is>>p.board;
         is>>p.bag;
+        is>>p.board;
         is>>p.otherPlayersRack;
         is>>p.rack;
         return is;

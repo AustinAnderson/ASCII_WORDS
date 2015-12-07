@@ -58,7 +58,7 @@ int main(int argc, char** argv){
     }
     bool player=!(playerNumber-1);//true player1 false player 2
 
-    //Interface interface(keyBindingsPath);
+    Interface interface(keyBindingsPath);
     string gameFile=argv[2];
     if(!newGame){//if its new, 
         ifstream in;
@@ -69,8 +69,8 @@ int main(int argc, char** argv){
             cerr<<"       check the file path and try again"<<endl;
             exit(3);
         }
-        //in>>interface;
+        in>>interface;
     }
-    //interface.play();
+    interface.play();
     return 0;
 }

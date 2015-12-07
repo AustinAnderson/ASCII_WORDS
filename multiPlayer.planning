@@ -33,6 +33,9 @@
 
 store game in format
 
+tile bag needs to be read before board because board finishes by telling rack to
+fill from tile bag
+
 game starts
 
 p1 moves
@@ -41,13 +44,13 @@ p1 writes
 
  shared data                                   ||my data      ||other data
  ______________________________________________||_____________||______________
-| turn |score data| board data | tile bag data || p1 rack data||p2 rack data 
+| turn |score data| tile bag data | board data || p1 rack data||p2 rack data 
 
 p2 reads
 
  shared data                                   ||my data      ||other data
  ______________________________________________||_____________||______________
-| turn |score data| board data | tile bag data || p1 rack data||p2 rack data 
+| turn |score data| tile bag data | board data || p1 rack data||p2 rack data 
 
 if turn is p1 quit with message, else
 _______________________________________________||reads in rack||reads rack data
@@ -61,14 +64,14 @@ p2 writes
 
  shared data                                   ||my data      ||other data
  ______________________________________________||_____________||______________
-| turn |score data| board data | tile bag data || p2 rack data||p1 rack data 
+| turn |score data| tile bag data | board data || p2 rack data||p1 rack data 
 
 
 p1 reads
 
  shared data                                   ||my data      ||other data
  ______________________________________________||_____________||______________
-| turn |score data| board data | tile bag data || p2 rack data||p1 rack data 
+| turn |score data| tile bag data | board data || p2 rack data||p1 rack data 
 
 if turn is p2 quit with message, else
 _______________________________________________||reads in rack||reads rack data

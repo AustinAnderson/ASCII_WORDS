@@ -69,6 +69,8 @@
         cout<<bottom.print()<<endl;
     }
     void Interface::play(){//        r  c
+        guy.refilTiles();//here and not constructor to allow this to fire after
+        //board is read in
         system("resize -s 44 100");
         cout<<BKGRND_WHT;
         system("clear");
@@ -177,6 +179,11 @@
                 }
                 //*/
                 else if(pressed==keyBindings[QUIT]){
+                    ofstream test;
+                    test.open("./testOut.txt");
+                    test<<*this<<endl;
+                    test.close();
+                    
                     done=true;
                 }
             }

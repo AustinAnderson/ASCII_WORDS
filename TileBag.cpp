@@ -1,6 +1,6 @@
 #include "TileBag.h"
 //public:
-    TileBag::TileBag(){               //@ A B C D E  F G H I J K L M N O P Q R S T U V W X Y Z
+    TileBag::TileBag(){      //@ A B C D E  F G H I J K L M N O P Q R S T U V W X Y Z
         int initTilesLeft[27]={2,9,2,2,4,12,2,3,2,9,1,1,4,2,6,8,2,1,6,4,6,4,2,2,1,2,1};
         for(int i=0;i<27;i++){
             tilesLeft[i]=initTilesLeft[i];
@@ -39,6 +39,10 @@
      * returns the char to use, or ' ' if the bag is empty
      */
     char TileBag::pullTile(){
+                    cout<<endl;
+                    cout<<"                       @ a b c d e  f g h i";
+                    cout<<" j k l m n o p q r s t u v w x y z"<<endl;
+                    cout<<"tile pulled, old bag: "<<*this<<endl;///DEBUG
         vector<char> tileList;
         char toReturn=' ';
         for(int i=0;i<27;i++){
@@ -54,6 +58,9 @@
             toReturn=tileList[ndx];
             tilesLeft[int(toReturn)-int('@')]--;//remove tile from bag
         }
+                                cout<<"           , new bag: "<<*this<<endl;///DEBUG
+                                while(!kbhit());
+                                getch();
         return toReturn;
     }
     ostream& operator<<(ostream& os,TileBag& tb){
@@ -63,10 +70,13 @@
         return os;
     }
     istream& operator>>(istream& is,TileBag& tb){
-        int let=0;
+        cout<<"                  @ a b c d e  f g h i";
+        cout<<" j k l m n o p q r s t u v w x y z"<<endl;
+        cout<<"bag read in, bag: "<<tb<<endl;///DEBUG
+        while(!kbhit());
+        getch();
         for(int i=0;i<27;i++){
-            is>>let;
-            tb.tilesLeft[i]=let;
+            is>>tb.tilesLeft[i];
         }
         return is;
     }

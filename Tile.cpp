@@ -175,10 +175,22 @@
     }
 
     ostream& operator<<(ostream& os,Tile& t){
-        os<<t.letter<<" "<<t.tentative<<" "<<t.selecting<<" "<<t.modifier<<" ";
+        if(t.letter==' '){
+            os<<"%"<<" ";
+        }
+        else{
+            os<<t.letter<<" ";
+        }
+        os<<t.tentative<<" "<<t.selecting<<" "<<t.modifier<<" ";
         return os;
     }
     istream& operator>>(istream& is,Tile& t){
-        is>>t.letter>>t.tentative>>t.selecting>>t.modifier;
+        char letter;
+        is>>letter;
+        if(letter=='%'){
+            letter=' ';
+        }
+        t.letter=letter;
+        is>>t.tentative>>t.selecting>>t.modifier;
         return is;
     }
