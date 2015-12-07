@@ -8,6 +8,8 @@ class Board{
 
         bool isTentative();
 
+        string getLastWord();
+
         void setTentative(bool newVal);
 
         void toggleSelecting();
@@ -43,6 +45,7 @@ class Board{
         friend ostream& operator<<(ostream& os,Board& b);
         friend istream& operator>>(istream& is,Board& b);
     private:
+        string lastWord;
         set<string> dictionary;
         vector<vector<Tile> > mat;
         vector<list<pair<int, int> > > tentatives;

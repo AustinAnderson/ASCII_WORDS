@@ -9,8 +9,10 @@
         contentMat=vector<vector<BindDisplay> >(3,vector<BindDisplay>(4));
         contentMat[0][0].setName("\n  edit keys: ");
         contentMat[0][0].setBound((*keyBindings)[REBIND]);
-        contentMat[0][1].setName("                                       quit: ");
-        contentMat[0][1].setBound((*keyBindings)[QUIT]);
+        contentMat[0][1].setName("           define last word: ");
+        contentMat[0][1].setBound((*keyBindings)[DEFINE]);
+        contentMat[0][2].setName("   quit: ");
+        contentMat[0][2].setBound((*keyBindings)[QUIT]);
         contentMat[1][0].setName("\n         up: ");
         contentMat[1][0].setBound((*keyBindings)[UP]);
         contentMat[1][1].setName(" down: ");
@@ -59,12 +61,12 @@
             }
             if(input==(*keyBindings)[UP]){
                 contentMat[yNdx][xNdx].setMode(DEFAULT);
-                if(yNdx==1){        //*     * null null
-                    if(xNdx>1){     // \   /
-                        xNdx=1;     //* *|* *
+                if(yNdx==1){        // *   * * null
+                    if(xNdx<2){     // |\  | |
+                        xNdx=0;     // * *|* *
                     }
                     else{
-                        xNdx=0;
+                        xNdx--;
                     }
                 }
                 if(yNdx>0){
@@ -75,9 +77,13 @@
             }
             else if(input==(*keyBindings)[DOWN]){
                 contentMat[yNdx][xNdx].setMode(DEFAULT);
-                if(yNdx==0&&xNdx==1){    //*  * null null
-                    yNdx=1;              //   |
-                    xNdx=3;              //****
+                if(yNdx==0&&xNdx==1){    //* ** null
+                    yNdx=1;              //  |
+                    xNdx=2;              //****
+                }
+                else if(yNdx==0&&xNdx==2){    //* ** null
+                    yNdx=1;                   //   |
+                    xNdx=3;                   //****
                 }
                 else if(yNdx<(contentMat.size()-1)){
                     yNdx++;
@@ -97,7 +103,7 @@
                 contentMat[yNdx][xNdx].setMode(DEFAULT);
                 bool valid=false;
                 if(yNdx==0){
-                    if(xNdx==0){
+                    if(xNdx<2){
                         valid=true;
                     }
                 }

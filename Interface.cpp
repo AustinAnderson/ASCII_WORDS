@@ -12,6 +12,7 @@
         keyBindings[BACK]='d';
         keyBindings[CLEAR]='c';
         keyBindings[REBIND]='b';
+        keyBindings[DEFINE]='y';
         keyBindings[QUIT]='q';
         choosingTile=false;
         message.push_back("      @ is blank");
@@ -92,7 +93,7 @@
                 }
                 else if(pressed==keyBindings[SUBMIT]){
                     system("clear");
-                    if(player){
+                    //if(player){
                         score.toggleCommitting();
                         print();//use kbhit instead of cin, allows us to
                         while(!kbhit());//block until answered, but not depend on enter key
@@ -106,12 +107,13 @@
                             }
                         }
                         score.toggleCommitting();
+                    /*
                     }
                     else{
                         cout<<"It's not your turn!"<<endl;
                         system("sleep .6");
                         putAllBack();
-                    }
+                    }*/
                     system("clear");
                     print();
                 }
@@ -142,16 +144,30 @@
                 /* to implement, need modify key bindings, including the visual
                  * part in bottomDisplay, and need to add getLastWord to Player
                  * class
+                 */
                 else if(pressed==keyBindings[DEFINE]){
-                    string lastWord=guy.getLastWord();
+                    string lastWord=guy.board.getLastWord();
                     system("clear");
                     cout<<lastWord<<endl;
-                    string command="curl -s";
-                    command+="www.merriam-webster.com/dictionary/";
-                    command+=lastWord;//look up the word on merriam-webster
-                    command+=" |tr '>' '\\n'|grep '</p'|"//trim out the excess
-                    command+="sed 's/<\\/p//g'|sed 's/?.*.//'";//html markings
-                    system(command);
+                    string command="curl -s ";
+                    command+="http://dictionary.reference.com/browse/";
+                    command+=lastWord;//search dictionary.com for the word
+                    command+=" |";
+                    command+="tr '\\n' ' '|";//remove the newlines
+                    command+="sed 's/<\\/div/@/g'|";//mark all the end div tags
+                    command+="tr @ '\\n'|";//insert newlines for each tag
+
+                    //get all the lines that are part of the div set
+                    command+="grep '<div class=\"def-set\"'|";
+
+                    command+="sed 's/<[^b][^>]*>//g'|";//remove all tags
+
+                    //word wrap at the 80 char mark
+                    command+="sed 's/\\(\\(.\\)\\{80\\}[^ ]*\\)/\\1@/g'|";
+
+                    command+="sed 's/\\(      [^ ]*\\)/\\1@/g'|";//format the
+                    command+="\\tr @ '\\n'";//word type on its own line
+                    system(command.c_str());
                     cout<<endl;
                     cout<<"press any key to return to the game"<<endl;
                     while(!kbhit());
@@ -159,7 +175,7 @@
                     system("clear");
                     print();
                 }
-                */
+                //*/
                 else if(pressed==keyBindings[QUIT]){
                     done=true;
                 }

@@ -19,10 +19,11 @@
 using namespace std;
 
 enum KeyBindings{REBIND,UP,DOWN,LEFT,RIGHT,
-    SUBMIT,CONFIRM,BACK,CLEAR,QUIT,NUM_BOUND_KEYS};
+    SUBMIT,CONFIRM,BACK,CLEAR,QUIT, DEFINE,
+    NUM_BOUND_KEYS};
 
 const string KeyNames[NUM_BOUND_KEYS]={"Rebind","Up","Down","Left","Right",
-    "Submit","Confirm","Back","Clear","Quit"};//these must match the above
+    "Submit","Confirm","Back","Clear","Quit","Define last word"};//these must match the above
 
 //toggle colors
 //*

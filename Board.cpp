@@ -407,6 +407,9 @@
         }
         return toReturn;
     }
+    string Board::getLastWord(){
+        return lastWord;
+    }
     bool Board::currentWordsValid(){
         vector<string> toCheck=computeSum();
         bool isValid=true;
@@ -419,14 +422,22 @@
     }
     int Board::checkAndCommit(){
         int toReturn=-1;
+        string playedWord="";
         if(currentTentativeSum!=0){//currenttentative sum will always be 0 if words invalid
             toReturn=currentTentativeSum;
             currentTentativeSum=0;
             for(int j=0;j<tentatives.size();j++){
                 for(list<pair<int, int> >::iterator i=tentatives[j].begin();i!=tentatives[j].end();i++){
+                    if(j==0){
+                        char nextChar=mat[i->first][i->second].getLetter();
+                        playedWord+=char(int(nextChar)+int('a')-int('A'));//tolower
+                    }
                     mat[i->first][i->second].setTentative(false);
                 }
             }
+        }
+        if(toReturn!=-1){
+            lastWord=playedWord;
         }
         return toReturn;
     }
