@@ -8,10 +8,14 @@
 
 class Interface{
     public:
-        Interface(string bindPreferencesPath);
+        Interface(string bindPreferencesPath,bool isPlayerOne);
 
         void print();
         void play();
+
+        bool isPlayerOnesTurn();
+
+        void setOutputFile(string outPath);
 
         friend ostream& operator<<(ostream& os,Interface& game);
         friend istream& operator>>(istream& is,Interface& game);
@@ -19,14 +23,24 @@ class Interface{
 
         vector<char> keyBindings;
         string setScreenBack;
-        bool player;//current player: true is this instance, false is other player's instance
-        //if backspace
-        ofstream bindingPreferences;
+
+        //this is the player number of this instance
+        //doesn't change after constructor is called
+        bool playerOne;
+
+        bool playerOnesTurn;//current player's turn: true is p1, false for p2
         bool choosingTile;
         Scores score;
         vector<string> message;
         Player guy;
         bottomDisplay bottom;
+        string outputFilePath;
+
+        void wrongTurnMessage();
+
+        void writeGame();
+
+        void defineWord();
 
         string getInitialSize();
         
@@ -45,6 +59,8 @@ class Interface{
         void left();
 
         void right();
+
+        void submit();
 
 
 };

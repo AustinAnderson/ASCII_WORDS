@@ -1,7 +1,8 @@
 #include "Interface.h"
 //public:
-    Interface::Interface(string bindPreferencesPath){
-        player=true;
+    Interface::Interface(string bindPreferencesPath,bool playerOne){
+        playerOne=true;//to be overwritten by >>
+        this->playerOne=playerOne;
         keyBindings=vector<char>(NUM_BOUND_KEYS);
         keyBindings[UP]='i';
         keyBindings[DOWN]='k';
@@ -52,6 +53,21 @@
         print();
 
     }
+    void Interface::setOutputFile(string outPath){
+        outputFilePath=outPath;
+    }
+    void Interface::wrongTurnMessage(){
+        system("clear");
+        cout<<"It's not your turn!"<<endl;
+        cout<<endl;
+        cout<<"you can still plan out your next move,"<<endl;
+        cout<<"but to play it, you'll need to exit the program,"<<endl;
+        cout<<"and check back after player "<<(int)((!playerOne)+1)<<" moves"<<endl;
+
+        while(!kbhit());
+        getch();
+        putAllBack();
+    }
     void Interface::print(){
 
         score.print();
@@ -67,6 +83,9 @@
             cout<<endl;
         }
         cout<<bottom.print()<<endl;
+    }
+    bool Interface::isPlayerOnesTurn(){
+        return playerOnesTurn;
     }
     void Interface::play(){//        r  c
         guy.refilTiles();//here and not constructor to allow this to fire after
@@ -94,30 +113,7 @@
                     right();
                 }
                 else if(pressed==keyBindings[SUBMIT]){
-                    system("clear");
-                    //if(player){
-                        score.toggleCommitting();
-                        print();//use kbhit instead of cin, allows us to
-                        while(!kbhit());//block until answered, but not depend on enter key
-                        pressed=getch();
-                        if(pressed=='y'||pressed=='Y'){
-                            int newScore=guy.board.checkAndCommit(); 
-                            if(newScore>0){
-                                score.add(player,newScore);
-                                player=!player;
-                                guy.refilTiles();
-                            }
-                        }
-                        score.toggleCommitting();
-                    /*
-                    }
-                    else{
-                        cout<<"It's not your turn!"<<endl;
-                        system("sleep .6");
-                        putAllBack();
-                    }*/
-                    system("clear");
-                    print();
+                    submit();
                 }
                 else if(pressed==keyBindings[CONFIRM]){
                     if(!choosingTile){
@@ -143,47 +139,11 @@
                     system("clear");
                     print();
                 }
-                /* to implement, need modify key bindings, including the visual
-                 * part in bottomDisplay, and need to add getLastWord to Player
-                 * class
-                 */
                 else if(pressed==keyBindings[DEFINE]){
-                    string lastWord=guy.board.getLastWord();
-                    system("clear");
-                    cout<<lastWord<<endl;
-                    string command="curl -s ";
-                    command+="http://dictionary.reference.com/browse/";
-                    command+=lastWord;//search dictionary.com for the word
-                    command+=" |";
-                    command+="tr '\\n' ' '|";//remove the newlines
-                    command+="sed 's/<\\/div/@/g'|";//mark all the end div tags
-                    command+="tr @ '\\n'|";//insert newlines for each tag
-
-                    //get all the lines that are part of the div set
-                    command+="grep '<div class=\"def-set\"'|";
-
-                    command+="sed 's/<[^b][^>]*>//g'|";//remove all tags
-
-                    //word wrap at the 80 char mark
-                    command+="sed 's/\\(\\(.\\)\\{80\\}[^ ]*\\)/\\1@/g'|";
-
-                    command+="sed 's/\\(      [^ ]*\\)/\\1@/g'|";//format the
-                    command+="\\tr @ '\\n'";//word type on its own line
-                    system(command.c_str());
-                    cout<<endl;
-                    cout<<"press any key to return to the game"<<endl;
-                    while(!kbhit());
-                    getch();
-                    system("clear");
-                    print();
+                    defineWord();
                 }
-                //*/
                 else if(pressed==keyBindings[QUIT]){
-                    ofstream test;
-                    test.open("./testOut.txt");
-                    test<<*this<<endl;
-                    test.close();
-                    
+                    writeGame();
                     done=true;
                 }
             }
@@ -191,6 +151,76 @@
         system(setScreenBack.c_str());
         cout<<TXTCLRRST<<endl;
         system("clear");
+    }
+    void Interface::submit(){
+        system("clear");
+        if(playerOnesTurn==playerOne){
+            score.toggleCommitting();
+            print();//use kbhit instead of cin, allows us to
+            while(!kbhit());//block until answered, but not depend on enter key
+            char pressed=getch();
+            if(pressed=='y'||pressed=='Y'){
+                int newScore=guy.board.checkAndCommit(); 
+                if(newScore>0){
+                    score.add(playerOnesTurn,newScore);
+                    playerOnesTurn=!playerOnesTurn;
+                    guy.refilTiles();
+                }
+            }
+            score.toggleCommitting();
+        }
+        else{
+            wrongTurnMessage();
+        }
+        system("clear");
+        print();
+
+    }
+    void Interface::defineWord(){
+        string lastWord=guy.board.getLastWord();
+        system("clear");
+        cout<<lastWord<<endl;
+        string command="curl -s ";
+        command+="http://dictionary.reference.com/browse/";
+        command+=lastWord;//search dictionary.com for the word
+        command+=" |";
+        command+="tr '\\n' ' '|";//remove the newlines
+        command+="sed 's/<\\/div/@/g'|";//mark all the end div tags
+        command+="tr @ '\\n'|";//insert newlines for each tag
+
+        //get all the lines that are part of the div set
+        command+="grep '<div class=\"def-set\"'|";
+
+        command+="sed 's/<[^b][^>]*>//g'|";//remove all tags
+
+        //word wrap at the 80 char mark
+        command+="sed 's/\\(\\(.\\)\\{80\\}[^ ]*\\)/\\1@/g'|";
+
+        command+="sed 's/\\(      [^ ]*\\)/\\1@/g'|";//format the
+        command+="\\tr @ '\\n'";//word type on its own line
+        system(command.c_str());
+        cout<<endl;
+        cout<<"press any key to return to the game"<<endl;
+        while(!kbhit());
+        getch();
+        system("clear");
+        print();
+
+    }
+    void Interface::writeGame(){
+        ofstream writeOut;
+        writeOut.open(outputFilePath);
+        if(!writeOut){
+            cerr<<"WARNING: could not open output"<<endl;
+            cerr<<"         file: \""<<outputFilePath<<"\""<<endl;
+            cerr<<"         game changes won't be saved"<<endl;
+            cerr<<endl;
+            cerr<<"         press any key to continue"<<endl;
+            while(!kbhit());
+            getch();
+        }
+        writeOut<<*this<<endl;
+        writeOut.close();
     }
 //private:
     
@@ -281,20 +311,13 @@
         print();
     }
     ostream& operator<<(ostream& os,Interface& game){
-        os<<game.player<<" ";
-        os<<game.score<<" ";
-        os<<game.guy<<" ";
+        os<<game.playerOnesTurn<<" ";//the turn
+        os<<game.score<<" ";//the score
+        os<<game.guy<<" ";//the class with the board and rack and bag
         return os;
     }
     istream& operator>>(istream& is,Interface& game){
-        is>>game.player;
-        /*
-        if(player!=<passed in player>){
-            error message
-            while(!kbhit());
-            exit
-        }
-        */
+        is>>game.playerOnesTurn;
         is>>game.score;
         is>>game.guy;
         return is;

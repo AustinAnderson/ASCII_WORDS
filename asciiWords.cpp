@@ -56,9 +56,13 @@ int main(int argc, char** argv){
         cerr<<location<<endl;
         exit(2);
     }
+    // {1,2}-1
+    // {0,1} but true for player 1, so
+    //!{0,1}
+    // {1,0} all good
     bool player=!(playerNumber-1);//true player1 false player 2
 
-    Interface interface(keyBindingsPath);
+    Interface interface(keyBindingsPath,player);
     string gameFile=argv[2];
     if(!newGame){//if its new, 
         ifstream in;
@@ -71,6 +75,13 @@ int main(int argc, char** argv){
         }
         in>>interface;
     }
-    interface.play();
+    interface.setOutputFile(gameFile);
+    if(player!=interface.isPlayerOnesTurn()){
+        cout<<"player "<<int((!player))+1<<" hasn't moved yet"<<endl;
+        cout<<"wait for them to move before playing"<<endl;
+    }
+    else{
+        interface.play();
+    }
     return 0;
 }
