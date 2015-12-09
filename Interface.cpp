@@ -1,7 +1,7 @@
 #include "Interface.h"
 //public:
     Interface::Interface(string bindPreferencesPath,bool playerOne){
-        playerOne=true;//to be overwritten by >>
+        playerOnesTurn=true;//to be overwritten by >>
         this->playerOne=playerOne;
         keyBindings=vector<char>(NUM_BOUND_KEYS);
         keyBindings[UP]='i';
@@ -27,7 +27,7 @@
         setScreenBack=getInitialSize();
         //set bindings from file
         ifstream readInBindings;
-        readInBindings.open(bindPreferencesPath);
+        readInBindings.open(bindPreferencesPath.c_str());
         if(readInBindings){
             for(int i=0;i<keyBindings.size();i++){
                 //using .get to support mapping space and enter
@@ -49,9 +49,6 @@
             getch();
         }
         bottom.init(&keyBindings,bindPreferencesPath);
-        system("clear");
-        print();
-
     }
     void Interface::setOutputFile(string outPath){
         outputFilePath=outPath;
@@ -62,7 +59,7 @@
         cout<<endl;
         cout<<"you can still plan out your next move,"<<endl;
         cout<<"but to play it, you'll need to exit the program,"<<endl;
-        cout<<"and check back after player "<<(int)((!playerOne)+1)<<" moves"<<endl;
+        cout<<"and check back after player "<<(int)((playerOne)+1)<<" moves"<<endl;
 
         while(!kbhit());
         getch();
@@ -88,6 +85,7 @@
         return playerOnesTurn;
     }
     void Interface::play(){//        r  c
+        cout<<playerOnesTurn<<endl;
         guy.refilTiles();//here and not constructor to allow this to fire after
         //board is read in
         system("resize -s 44 100");
@@ -209,7 +207,7 @@
     }
     void Interface::writeGame(){
         ofstream writeOut;
-        writeOut.open(outputFilePath);
+        writeOut.open(outputFilePath.c_str());
         if(!writeOut){
             cerr<<"WARNING: could not open output"<<endl;
             cerr<<"         file: \""<<outputFilePath<<"\""<<endl;

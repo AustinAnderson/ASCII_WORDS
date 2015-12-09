@@ -1,7 +1,7 @@
 /******************************************************
 * Filename:       asciiWords.cpp
 * Author:         Austin Anderson
-* Date Created:  2015-02-20
+* Date Created:   2015-02-20
 * Description:    ascii version of words with friends
 * 
 ******************************************************/
@@ -66,7 +66,7 @@ int main(int argc, char** argv){
     string gameFile=argv[2];
     if(!newGame){//if its new, 
         ifstream in;
-        in.open(gameFile);
+        in.open(gameFile.c_str());
         if(!in){
             cerr<<"Error: unable to open game file"<<endl;
             cerr<<"       file name \""<<gameFile<<"\""<<endl;
@@ -77,7 +77,7 @@ int main(int argc, char** argv){
     }
     interface.setOutputFile(gameFile);
     if(player!=interface.isPlayerOnesTurn()){
-        cout<<"player "<<int((!player))+1<<" hasn't moved yet"<<endl;
+        cout<<"player "<<int((player))+1<<" hasn't moved yet"<<endl;
         cout<<"wait for them to move before playing"<<endl;
     }
     else{

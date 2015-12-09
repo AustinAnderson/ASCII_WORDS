@@ -39,10 +39,6 @@
      * returns the char to use, or ' ' if the bag is empty
      */
     char TileBag::pullTile(){
-                    cout<<endl;
-                    cout<<"                       @ a b c d e  f g h i";
-                    cout<<" j k l m n o p q r s t u v w x y z"<<endl;
-                    cout<<"tile pulled, old bag: "<<*this<<endl;///DEBUG
         vector<char> tileList;
         char toReturn=' ';
         for(int i=0;i<27;i++){
@@ -58,9 +54,6 @@
             toReturn=tileList[ndx];
             tilesLeft[int(toReturn)-int('@')]--;//remove tile from bag
         }
-                                cout<<"           , new bag: "<<*this<<endl;///DEBUG
-                                while(!kbhit());
-                                getch();
         return toReturn;
     }
     ostream& operator<<(ostream& os,TileBag& tb){
@@ -70,11 +63,6 @@
         return os;
     }
     istream& operator>>(istream& is,TileBag& tb){
-        cout<<"                  @ a b c d e  f g h i";
-        cout<<" j k l m n o p q r s t u v w x y z"<<endl;
-        cout<<"bag read in, bag: "<<tb<<endl;///DEBUG
-        while(!kbhit());
-        getch();
         for(int i=0;i<27;i++){
             is>>tb.tilesLeft[i];
         }

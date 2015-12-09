@@ -172,7 +172,7 @@
 //private:
     void bottomDisplay::savePreferences(){
         ofstream write;
-        write.open(bindPreferencesPath);
+        write.open(bindPreferencesPath.c_str());
         string filePath=bindPreferencesPath;
         if(bindPreferencesPath==""){
             filePath="(none specified)";
