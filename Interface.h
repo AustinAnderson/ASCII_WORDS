@@ -8,7 +8,7 @@
 
 class Interface{
     public:
-        Interface(string bindPreferencesPath,bool isPlayerOne);
+        Interface(string bindPreferencesPath,bool isPlayerOne,bool newGame);
 
         void print();
         void play();
@@ -20,6 +20,10 @@ class Interface{
         friend ostream& operator<<(ostream& os,Interface& game);
         friend istream& operator>>(istream& is,Interface& game);
     private:
+
+        bool newGame;
+
+        int checkSum;
 
         vector<char> keyBindings;
         string setScreenBack;
@@ -35,6 +39,8 @@ class Interface{
         Player guy;
         bottomDisplay bottom;
         string outputFilePath;
+
+        int saveFileCheckSum();
 
         void wrongTurnMessage();
 

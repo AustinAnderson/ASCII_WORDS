@@ -62,11 +62,11 @@ int main(int argc, char** argv){
     // {1,0} all good
     bool player=!(playerNumber-1);//true player1 false player 2
 
-    Interface interface(keyBindingsPath,player);
+    Interface interface(keyBindingsPath,player,newGame);
     string gameFile=argv[2];
-    if(!newGame){//if its new, 
-        ifstream in;
-        in.open(gameFile.c_str());
+    ifstream in;
+    in.open(gameFile.c_str());
+    if(!newGame){//if its not a new game 
         if(!in){
             cerr<<"Error: unable to open game file"<<endl;
             cerr<<"       file name \""<<gameFile<<"\""<<endl;
@@ -74,6 +74,16 @@ int main(int argc, char** argv){
             exit(3);
         }
         in>>interface;
+    }
+    else{
+        if(in){
+            cerr<<"Error: save file already exists"<<endl;
+            cerr<<"       file name \""<<gameFile<<"\""<<endl;
+            cerr<<"       starting a new game requires you to delete"<<endl;
+            cerr<<"       the previous save file before starting"<<endl;
+            in.close();
+            exit(1);
+        }
     }
     interface.setOutputFile(gameFile);
     if(player!=interface.isPlayerOnesTurn()){

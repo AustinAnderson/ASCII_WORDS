@@ -192,5 +192,6 @@
         }
         t.letter=letter;
         is>>t.tentative>>t.selecting>>t.modifier;
+        t.setTop();
         return is;
     }

@@ -1,6 +1,7 @@
 #include "Interface.h"
 //public:
-    Interface::Interface(string bindPreferencesPath,bool playerOne){
+    Interface::Interface(string bindPreferencesPath,bool playerOne,bool newGame){
+        this->newGame=newGame;
         playerOnesTurn=true;//to be overwritten by >>
         this->playerOne=playerOne;
         keyBindings=vector<char>(NUM_BOUND_KEYS);
@@ -49,6 +50,7 @@
             getch();
         }
         bottom.init(&keyBindings,bindPreferencesPath);
+        checkSum=saveFileCheckSum();
     }
     void Interface::setOutputFile(string outPath){
         outputFilePath=outPath;
@@ -205,7 +207,48 @@
         print();
 
     }
+    int Interface::saveFileCheckSum(){
+        int checksum=-1;
+        ifstream in;
+        in.open(outputFilePath.c_str(),ios::binary);
+        if(in){
+            checksum++;
+            in.seekg(0,in.end);
+            int length=in.tellg();
+            in.seekg(0,in.beg);
+            char buffer[length];
+            in.read(buffer,length);
+            for(int i=0;i<length;i++){
+                checksum+=int(buffer[i]);
+            }
+            in.close();
+        }
+        return checksum;
+    }
     void Interface::writeGame(){
+        //check newgame file not existing here
+        if(newGame){
+            ifstream checkExists;
+            checkExists.open(outputFilePath.c_str());
+            if(checkExists){
+                cerr<<"Error: save file already exists"<<endl;
+                cerr<<"       file name \""<<outputFilePath<<"\""<<endl;
+                cerr<<"       starting a new game requires the "<<endl;
+                cerr<<"       previous save file to not exist"<<endl;
+                checkExists.close();
+                exit(1);
+            }
+        }
+        ///check checksum here
+        if(checkSum!=saveFileCheckSum()){
+            cerr<<"Error: the contents of save file"<<endl;
+            cerr<<"       file name \""<<outputFilePath<<"\""<<endl;
+            cerr<<"       have changed since the program was started"<<endl;
+            cerr<<"       the game cannot be saved"<<endl;
+            exit(2);
+        }
+
+        ///check able to open file and write here
         ofstream writeOut;
         writeOut.open(outputFilePath.c_str());
         if(!writeOut){

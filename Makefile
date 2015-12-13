@@ -5,14 +5,21 @@ oDir=oFiles/
 
 all:
 		make --no-print-directory unclear
+		make --no-print-directory comp2
 		make --no-print-directory comp
 		make --no-print-directory clear
 
 comp: $(allO)
 		$(CXX) -o Words $(allO)
 
+comp2: viewSave.o Tile.o
+		$(CXX) -o viewSave viewSave.o Tile.o
+
 asciiWords.o: asciiWords.cpp Interface.h globals.h \
  bottomDisplay.h Player.h Board.h Tile.h TileBag.h Rack.h Scores.h
+
+viewSave.o: debugUtil/viewSave.cpp Tile.h
+		$(CXX) -c -o viewSave.o debugUtil/viewSave.cpp
 
 Board.o: Board.cpp Board.h globals.h Tile.h
 
