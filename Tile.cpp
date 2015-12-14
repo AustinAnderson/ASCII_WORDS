@@ -181,7 +181,7 @@
         else{
             os<<t.letter<<" ";
         }
-        os<<t.tentative<<" "<<t.selecting<<" "<<t.modifier<<" ";
+        os<<t.tentative<<" "<<t.modifier<<" ";
         return os;
     }
     istream& operator>>(istream& is,Tile& t){
@@ -191,7 +191,7 @@
             letter=' ';
         }
         t.letter=letter;
-        is>>t.tentative>>t.selecting>>t.modifier;
+        is>>t.tentative>>t.modifier;
         t.setTop();
         return is;
     }

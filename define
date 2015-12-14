@@ -1,5 +1,5 @@
-#!/bin/bash
-curl -s "http://dictionary.reference.com/browse/$1" |
+#!/bin/sh
+if ! curl -s "http://dictionary.reference.com/browse/$1" |
 tr '\n' ' '|
 sed 's/<\/div/@/g'|
 tr @ '\n'|
@@ -7,7 +7,7 @@ grep '<div class="def-set"'|
 sed 's/<[^b][^>]*>//g'|
 sed 's/\(\(.\)\{80\}[^ ]*\)/\1@/g'|
 sed 's/\(      [^ ]*\)/\1@/g'|
-\tr @ '\n';
+\tr @ '\n'; then echo "word not found"; fi
 exit 0;
 
 

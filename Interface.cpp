@@ -36,6 +36,7 @@
                 readInBindings.get(next);
                 keyBindings[i]=next;
             }
+            readInBindings.close();
         }
         else{
             string path=bindPreferencesPath;
@@ -50,10 +51,10 @@
             getch();
         }
         bottom.init(&keyBindings,bindPreferencesPath);
-        checkSum=saveFileCheckSum();
     }
     void Interface::setOutputFile(string outPath){
         outputFilePath=outPath;
+        checkSum=saveFileCheckSum();
     }
     void Interface::wrongTurnMessage(){
         system("clear");
@@ -86,19 +87,20 @@
     bool Interface::isPlayerOnesTurn(){
         return playerOnesTurn;
     }
-    void Interface::play(){//        r  c
-        cout<<playerOnesTurn<<endl;
-        guy.refilTiles();//here and not constructor to allow this to fire after
-        //board is read in
+    void Interface::play(){//r  c
         system("resize -s 44 100");
+        //here and not constructor to allow this to fire after
+        //board is read in
+        guy.refilTiles();
         cout<<BKGRND_WHT;
+        system("clear");
+        print();
         system("clear");
         print();
         bool done=false;
         while(!done){
             char pressed='\0';
             if(kbhit()){
-            //    updateGame();///////////////////////////////////////////////////////////////////
                 pressed=getch();
                 if(pressed==keyBindings[UP]){
                     up();
@@ -143,7 +145,10 @@
                     defineWord();
                 }
                 else if(pressed==keyBindings[QUIT]){
-                    writeGame();
+                    putAllBack();
+                    if(playerOnesTurn!=playerOne){
+                        writeGame();
+                    }
                     done=true;
                 }
             }
@@ -240,11 +245,13 @@
             }
         }
         ///check checksum here
-        if(checkSum!=saveFileCheckSum()){
+        int secondCheck=saveFileCheckSum();
+        if(checkSum!=secondCheck){
             cerr<<"Error: the contents of save file"<<endl;
             cerr<<"       file name \""<<outputFilePath<<"\""<<endl;
             cerr<<"       have changed since the program was started"<<endl;
-            cerr<<"       the game cannot be saved"<<endl;
+            cerr<<"       the game cannot be saved"<<TXTCLRRST<<endl;
+            cerr<<checkSum<<" "<<secondCheck<<endl;
             exit(2);
         }
 
