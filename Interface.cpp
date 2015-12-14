@@ -323,6 +323,36 @@
             system("clear");
             print();
         }
+        else if('@'==guy.board.getCurrentTile()){
+            /* right now, the game is implemented where a movement of a tile is
+             * simulated by the character for the tile on the board or rack
+             * being erased and then written over, then the tile looking up it's
+             * own new point value. this works ok if the character is the only
+             * state information that needs to be saved, as was the case before
+             * trying to add blank tiles, but doesn't work with the blank tile,
+             * because it needs to have one letter, and remember it is actually
+             * a blank tile even when it is moved.
+
+             * a solution to this problem would be to have the tiles as logical
+             * units and only move the pointer to the tile between the board and
+             * rack and tile bag, but this would require a major rewrite of most
+             * of the code. thinking the better route at this point would be to
+             * just have movements of tile also hold blank tile bool
+             */
+            //visual que here
+            char in='\0';
+            while(!kbhit());
+            in=getch();
+            if(in>='a'){
+                in=char(int(in)-int('a')+int('A'));
+            }
+            guy.board.updateCurrentTile(in);
+            if(guy.board.getCurrentTile()==' '){
+                while(!kbhit());
+                getch();
+                guy.board.updateCurrentTile('@');
+            }
+        }
     }
     void Interface::up(){
         if(!choosingTile){

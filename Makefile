@@ -12,8 +12,8 @@ all:
 comp: $(allO)
 		$(CXX) -o Words $(allO)
 
-comp2: viewSave.o Tile.o
-		$(CXX) -o viewSave viewSave.o Tile.o
+comp2: viewSave.o Tile.o globals.o
+		$(CXX) -o viewSave viewSave.o Tile.o globals.o
 
 asciiWords.o: asciiWords.cpp Interface.h globals.h \
  bottomDisplay.h Player.h Board.h Tile.h TileBag.h Rack.h Scores.h
