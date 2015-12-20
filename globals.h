@@ -27,7 +27,7 @@ const string KeyNames[NUM_BOUND_KEYS]={"Rebind","Up","Down","Left","Right",
     "Submit","Confirm","Back","Clear","Quit","Define last word"};//these must match the above
 
 //toggle colors
-/*
+//*
 const string WORD_VALID="\e[1;90;48;5;106m";
 const string WORD_INVALID="\e[1;97;41m";
 //const string BKGRND_WHT="\e[1;90;47m";//grey
