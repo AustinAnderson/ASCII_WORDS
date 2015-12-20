@@ -8,7 +8,21 @@
 
 #include "Interface.h"
 
+
+
+
+#include "TileBag.h"
+#include "Tile.h"
 int main(int argc, char** argv){
+    /*
+    TileBag test;
+    Tile pulled;
+    pulled=test.pullTile();
+    cout<<"test is empty? "<<test.isEmpty()<<endl;
+    cout<<"letter -"<<pulled.getLetter()<<"-"<<endl;
+    cout<<pulled.line1()<<endl;
+    cout<<pulled.line2()<<endl;
+    /*/
     string keyBindingsPath="";
     bool newGame=false;
     //thought about using getopt, but I'm not that good with it,
@@ -93,5 +107,6 @@ int main(int argc, char** argv){
     else{
         interface.play();
     }
+    //*/
     return 0;
 }

@@ -1,0 +1,864 @@
+mv: cannot stat ‘oFiles/*.o’: No such file or directory
+Interface.cpp: In member function ‘void Interface::putTileBack()’:
+Interface.cpp:289:55: error: cannot convert ‘Tile’ to ‘char’ in initialization
+                 char putBack=guy.board.getCurrentTile();
+                                                       ^
+Interface.cpp:291:51: error: no matching function for call to ‘Rack::setTile(int&, char&)’
+                 guy.rack.setTile(blankspot,putBack);
+                                                   ^
+Interface.cpp:291:51: note: candidate is:
+In file included from Player.h:6:0,
+                 from Interface.h:5,
+                 from Interface.cpp:1:
+Rack.h:27:14: note: void Rack::setTile(int, Tile&)
+         void setTile(int ndx,Tile& tile);
+              ^
+Rack.h:27:14: note:   no known conversion for argument 2 from ‘char’ to ‘Tile&’
+Interface.cpp: In member function ‘void Interface::putAllBack()’:
+Interface.cpp:301:34: error: request for member ‘size’ in ‘tentatives’, which is of pointer type ‘std::vector<Tile>*’ (maybe you meant to use ‘->’ ?)
+         for(int i=0;i<tentatives.size();i++){
+                                  ^
+Interface.cpp: In member function ‘void Interface::toggleSelecting()’:
+Interface.cpp:319:15: error: no match for ‘operator==’ (operand types are ‘char’ and ‘Tile’)
+         if(' '==guy.board.getCurrentTile()){
+               ^
+Interface.cpp:319:15: note: candidates are:
+In file included from /usr/include/c++/4.9/iosfwd:40:0,
+                 from /usr/include/c++/4.9/ios:38,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/postypes.h:216:5: note: template<class _StateT> bool std::operator==(const std::fpos<_StateT>&, const std::fpos<_StateT>&)
+     operator==(const fpos<_StateT>& __lhs, const fpos<_StateT>& __rhs)
+     ^
+/usr/include/c++/4.9/bits/postypes.h:216:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::fpos<_StateT>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:64:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_pair.h:214:5: note: template<class _T1, class _T2> bool std::operator==(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
+     operator==(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_pair.h:214:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::pair<_T1, _T2>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:292:5: note: template<class _Iterator> bool std::operator==(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
+     operator==(const reverse_iterator<_Iterator>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:292:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::reverse_iterator<_Iterator>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:342:5: note: template<class _IteratorL, class _IteratorR> bool std::operator==(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
+     operator==(const reverse_iterator<_IteratorL>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:342:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::reverse_iterator<_Iterator>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/string:41:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/allocator.h:128:5: note: template<class _T1, class _T2> bool std::operator==(const std::allocator<_CharT>&, const std::allocator<_T2>&)
+     operator==(const allocator<_T1>&, const allocator<_T2>&)
+     ^
+/usr/include/c++/4.9/bits/allocator.h:128:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::allocator<_CharT>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/string:41:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/allocator.h:133:5: note: template<class _Tp> bool std::operator==(const std::allocator<_CharT>&, const std::allocator<_CharT>&)
+     operator==(const allocator<_Tp>&, const allocator<_Tp>&)
+     ^
+/usr/include/c++/4.9/bits/allocator.h:133:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::allocator<_CharT>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2505:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator==(const std::basic_string<_CharT, _Traits, _Alloc>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2505:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::basic_string<_CharT, _Traits, _Alloc>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2512:5: note: template<class _CharT> typename __gnu_cxx::__enable_if<std::__is_char<_Tp>::__value, bool>::__type std::operator==(const std::basic_string<_CharT>&, const std::basic_string<_CharT>&)
+     operator==(const basic_string<_CharT>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2512:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::basic_string<_CharT>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2526:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator==(const _CharT*, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator==(const _CharT* __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2526:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const _CharT*’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2538:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator==(const std::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
+     operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2538:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::basic_string<_CharT, _Traits, _Alloc>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/bits/locale_facets.h:48:0,
+                 from /usr/include/c++/4.9/bits/basic_ios.h:37,
+                 from /usr/include/c++/4.9/ios:44,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/streambuf_iterator.h:204:5: note: template<class _CharT, class _Traits> bool std::operator==(const std::istreambuf_iterator<_CharT, _Traits>&, const std::istreambuf_iterator<_CharT, _Traits>&)
+     operator==(const istreambuf_iterator<_CharT, _Traits>& __a,
+     ^
+/usr/include/c++/4.9/bits/streambuf_iterator.h:204:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::istreambuf_iterator<_CharT, _Traits>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/vector:64:0,
+                 from globals.h:6,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_vector.h:1511:5: note: template<class _Tp, class _Alloc> bool std::operator==(const std::vector<_Tp, _Alloc>&, const std::vector<_Tp, _Alloc>&)
+     operator==(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_vector.h:1511:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::vector<_Tp, _Alloc>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/map:60:0,
+                 from globals.h:7,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_tree.h:323:5: note: template<class _Val> bool std::operator==(const std::_Rb_tree_iterator<_Tp>&, const std::_Rb_tree_const_iterator<_Val>&)
+     operator==(const _Rb_tree_iterator<_Val>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_tree.h:323:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::_Rb_tree_iterator<_Tp>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/map:60:0,
+                 from globals.h:7,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_tree.h:970:5: note: template<class _Key, class _Val, class _KeyOfValue, class _Compare, class _Alloc> bool std::operator==(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&, const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&)
+     operator==(const _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_tree.h:970:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/map:61:0,
+                 from globals.h:7,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_map.h:1000:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator==(const std::map<_Key, _Tp, _Compare, _Alloc>&, const std::map<_Key, _Tp, _Compare, _Alloc>&)
+     operator==(const map<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_map.h:1000:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::map<_Key, _Tp, _Compare, _Alloc>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/map:62:0,
+                 from globals.h:7,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_multimap.h:903:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator==(const std::multimap<_Key, _Tp, _Compare, _Alloc>&, const std::multimap<_Key, _Tp, _Compare, _Alloc>&)
+     operator==(const multimap<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_multimap.h:903:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::multimap<_Key, _Tp, _Compare, _Alloc>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/list:63:0,
+                 from globals.h:8,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_list.h:285:5: note: template<class _Val> bool std::operator==(const std::_List_iterator<_Tp>&, const std::_List_const_iterator<_Val>&)
+     operator==(const _List_iterator<_Val>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_list.h:285:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::_List_iterator<_Tp>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/list:63:0,
+                 from globals.h:8,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_list.h:1729:5: note: template<class _Tp, class _Alloc> bool std::operator==(const std::list<_Tp, _Alloc>&, const std::list<_Tp, _Alloc>&)
+     operator==(const list<_Tp, _Alloc>& __x, const list<_Tp, _Alloc>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_list.h:1729:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::list<_Tp, _Alloc>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/set:61:0,
+                 from globals.h:12,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_set.h:793:5: note: template<class _Key, class _Compare, class _Alloc> bool std::operator==(const std::set<_Key, _Compare, _Alloc>&, const std::set<_Key, _Compare, _Alloc>&)
+     operator==(const set<_Key, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_set.h:793:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::set<_Key, _Compare, _Alloc>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+In file included from /usr/include/c++/4.9/set:62:0,
+                 from globals.h:12,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_multiset.h:777:5: note: template<class _Key, class _Compare, class _Alloc> bool std::operator==(const std::multiset<_Key, _Compare, _Alloc>&, const std::multiset<_Key, _Compare, _Alloc>&)
+     operator==(const multiset<_Key, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_multiset.h:777:5: note:   template argument deduction/substitution failed:
+Interface.cpp:319:42: note:   mismatched types ‘const std::multiset<_Key, _Compare, _Alloc>’ and ‘char’
+         if(' '==guy.board.getCurrentTile()){
+                                          ^
+Interface.cpp:326:20: error: no match for ‘operator==’ (operand types are ‘char’ and ‘Tile’)
+         else if('@'==guy.board.getCurrentTile()){
+                    ^
+Interface.cpp:326:20: note: candidates are:
+In file included from /usr/include/c++/4.9/iosfwd:40:0,
+                 from /usr/include/c++/4.9/ios:38,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/postypes.h:216:5: note: template<class _StateT> bool std::operator==(const std::fpos<_StateT>&, const std::fpos<_StateT>&)
+     operator==(const fpos<_StateT>& __lhs, const fpos<_StateT>& __rhs)
+     ^
+/usr/include/c++/4.9/bits/postypes.h:216:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::fpos<_StateT>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:64:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_pair.h:214:5: note: template<class _T1, class _T2> bool std::operator==(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
+     operator==(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_pair.h:214:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::pair<_T1, _T2>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:292:5: note: template<class _Iterator> bool std::operator==(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
+     operator==(const reverse_iterator<_Iterator>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:292:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::reverse_iterator<_Iterator>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:342:5: note: template<class _IteratorL, class _IteratorR> bool std::operator==(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
+     operator==(const reverse_iterator<_IteratorL>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:342:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::reverse_iterator<_Iterator>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/string:41:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/allocator.h:128:5: note: template<class _T1, class _T2> bool std::operator==(const std::allocator<_CharT>&, const std::allocator<_T2>&)
+     operator==(const allocator<_T1>&, const allocator<_T2>&)
+     ^
+/usr/include/c++/4.9/bits/allocator.h:128:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::allocator<_CharT>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/string:41:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/allocator.h:133:5: note: template<class _Tp> bool std::operator==(const std::allocator<_CharT>&, const std::allocator<_CharT>&)
+     operator==(const allocator<_Tp>&, const allocator<_Tp>&)
+     ^
+/usr/include/c++/4.9/bits/allocator.h:133:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::allocator<_CharT>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2505:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator==(const std::basic_string<_CharT, _Traits, _Alloc>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2505:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::basic_string<_CharT, _Traits, _Alloc>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2512:5: note: template<class _CharT> typename __gnu_cxx::__enable_if<std::__is_char<_Tp>::__value, bool>::__type std::operator==(const std::basic_string<_CharT>&, const std::basic_string<_CharT>&)
+     operator==(const basic_string<_CharT>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2512:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::basic_string<_CharT>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2526:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator==(const _CharT*, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator==(const _CharT* __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2526:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const _CharT*’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2538:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator==(const std::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
+     operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2538:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::basic_string<_CharT, _Traits, _Alloc>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/bits/locale_facets.h:48:0,
+                 from /usr/include/c++/4.9/bits/basic_ios.h:37,
+                 from /usr/include/c++/4.9/ios:44,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/streambuf_iterator.h:204:5: note: template<class _CharT, class _Traits> bool std::operator==(const std::istreambuf_iterator<_CharT, _Traits>&, const std::istreambuf_iterator<_CharT, _Traits>&)
+     operator==(const istreambuf_iterator<_CharT, _Traits>& __a,
+     ^
+/usr/include/c++/4.9/bits/streambuf_iterator.h:204:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::istreambuf_iterator<_CharT, _Traits>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/vector:64:0,
+                 from globals.h:6,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_vector.h:1511:5: note: template<class _Tp, class _Alloc> bool std::operator==(const std::vector<_Tp, _Alloc>&, const std::vector<_Tp, _Alloc>&)
+     operator==(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_vector.h:1511:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::vector<_Tp, _Alloc>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/map:60:0,
+                 from globals.h:7,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_tree.h:323:5: note: template<class _Val> bool std::operator==(const std::_Rb_tree_iterator<_Tp>&, const std::_Rb_tree_const_iterator<_Val>&)
+     operator==(const _Rb_tree_iterator<_Val>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_tree.h:323:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::_Rb_tree_iterator<_Tp>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/map:60:0,
+                 from globals.h:7,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_tree.h:970:5: note: template<class _Key, class _Val, class _KeyOfValue, class _Compare, class _Alloc> bool std::operator==(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&, const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&)
+     operator==(const _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_tree.h:970:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/map:61:0,
+                 from globals.h:7,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_map.h:1000:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator==(const std::map<_Key, _Tp, _Compare, _Alloc>&, const std::map<_Key, _Tp, _Compare, _Alloc>&)
+     operator==(const map<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_map.h:1000:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::map<_Key, _Tp, _Compare, _Alloc>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/map:62:0,
+                 from globals.h:7,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_multimap.h:903:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator==(const std::multimap<_Key, _Tp, _Compare, _Alloc>&, const std::multimap<_Key, _Tp, _Compare, _Alloc>&)
+     operator==(const multimap<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_multimap.h:903:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::multimap<_Key, _Tp, _Compare, _Alloc>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/list:63:0,
+                 from globals.h:8,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_list.h:285:5: note: template<class _Val> bool std::operator==(const std::_List_iterator<_Tp>&, const std::_List_const_iterator<_Val>&)
+     operator==(const _List_iterator<_Val>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_list.h:285:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::_List_iterator<_Tp>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/list:63:0,
+                 from globals.h:8,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_list.h:1729:5: note: template<class _Tp, class _Alloc> bool std::operator==(const std::list<_Tp, _Alloc>&, const std::list<_Tp, _Alloc>&)
+     operator==(const list<_Tp, _Alloc>& __x, const list<_Tp, _Alloc>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_list.h:1729:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::list<_Tp, _Alloc>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/set:61:0,
+                 from globals.h:12,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_set.h:793:5: note: template<class _Key, class _Compare, class _Alloc> bool std::operator==(const std::set<_Key, _Compare, _Alloc>&, const std::set<_Key, _Compare, _Alloc>&)
+     operator==(const set<_Key, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_set.h:793:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::set<_Key, _Compare, _Alloc>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+In file included from /usr/include/c++/4.9/set:62:0,
+                 from globals.h:12,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_multiset.h:777:5: note: template<class _Key, class _Compare, class _Alloc> bool std::operator==(const std::multiset<_Key, _Compare, _Alloc>&, const std::multiset<_Key, _Compare, _Alloc>&)
+     operator==(const multiset<_Key, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_multiset.h:777:5: note:   template argument deduction/substitution failed:
+Interface.cpp:326:47: note:   mismatched types ‘const std::multiset<_Key, _Compare, _Alloc>’ and ‘char’
+         else if('@'==guy.board.getCurrentTile()){
+                                               ^
+Interface.cpp:349:43: error: no matching function for call to ‘Board::updateCurrentTile(char&)’
+             guy.board.updateCurrentTile(in);
+                                           ^
+Interface.cpp:349:43: note: candidate is:
+In file included from Player.h:4:0,
+                 from Interface.h:5,
+                 from Interface.cpp:1:
+Board.h:25:14: note: void Board::updateCurrentTile(Tile&)
+         void updateCurrentTile(Tile& otherTile);
+              ^
+Board.h:25:14: note:   no known conversion for argument 1 from ‘char’ to ‘Tile&’
+Interface.cpp:350:42: error: no match for ‘operator==’ (operand types are ‘Tile’ and ‘char’)
+             if(guy.board.getCurrentTile()==' '){
+                                          ^
+Interface.cpp:350:42: note: candidates are:
+In file included from /usr/include/c++/4.9/iosfwd:40:0,
+                 from /usr/include/c++/4.9/ios:38,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/postypes.h:216:5: note: template<class _StateT> bool std::operator==(const std::fpos<_StateT>&, const std::fpos<_StateT>&)
+     operator==(const fpos<_StateT>& __lhs, const fpos<_StateT>& __rhs)
+     ^
+/usr/include/c++/4.9/bits/postypes.h:216:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::fpos<_StateT>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:64:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_pair.h:214:5: note: template<class _T1, class _T2> bool std::operator==(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
+     operator==(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_pair.h:214:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::pair<_T1, _T2>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:292:5: note: template<class _Iterator> bool std::operator==(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
+     operator==(const reverse_iterator<_Iterator>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:292:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9/bits/char_traits.h:39,
+                 from /usr/include/c++/4.9/ios:40,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_iterator.h:342:5: note: template<class _IteratorL, class _IteratorR> bool std::operator==(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
+     operator==(const reverse_iterator<_IteratorL>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_iterator.h:342:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/string:41:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/allocator.h:128:5: note: template<class _T1, class _T2> bool std::operator==(const std::allocator<_CharT>&, const std::allocator<_T2>&)
+     operator==(const allocator<_T1>&, const allocator<_T2>&)
+     ^
+/usr/include/c++/4.9/bits/allocator.h:128:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::allocator<_CharT>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/string:41:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/allocator.h:133:5: note: template<class _Tp> bool std::operator==(const std::allocator<_CharT>&, const std::allocator<_CharT>&)
+     operator==(const allocator<_Tp>&, const allocator<_Tp>&)
+     ^
+/usr/include/c++/4.9/bits/allocator.h:133:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::allocator<_CharT>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2505:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator==(const std::basic_string<_CharT, _Traits, _Alloc>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2505:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::basic_string<_CharT, _Traits, _Alloc>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2512:5: note: template<class _CharT> typename __gnu_cxx::__enable_if<std::__is_char<_Tp>::__value, bool>::__type std::operator==(const std::basic_string<_CharT>&, const std::basic_string<_CharT>&)
+     operator==(const basic_string<_CharT>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2512:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::basic_string<_CharT>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2526:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator==(const _CharT*, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator==(const _CharT* __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2526:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   mismatched types ‘const _CharT*’ and ‘Tile’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/string:52:0,
+                 from /usr/include/c++/4.9/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.9/bits/ios_base.h:41,
+                 from /usr/include/c++/4.9/ios:42,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/basic_string.h:2538:5: note: template<class _CharT, class _Traits, class _Alloc> bool std::operator==(const std::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
+     operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9/bits/basic_string.h:2538:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::basic_string<_CharT, _Traits, _Alloc>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/bits/locale_facets.h:48:0,
+                 from /usr/include/c++/4.9/bits/basic_ios.h:37,
+                 from /usr/include/c++/4.9/ios:44,
+                 from /usr/include/c++/4.9/istream:38,
+                 from /usr/include/c++/4.9/fstream:38,
+                 from globals.h:3,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/streambuf_iterator.h:204:5: note: template<class _CharT, class _Traits> bool std::operator==(const std::istreambuf_iterator<_CharT, _Traits>&, const std::istreambuf_iterator<_CharT, _Traits>&)
+     operator==(const istreambuf_iterator<_CharT, _Traits>& __a,
+     ^
+/usr/include/c++/4.9/bits/streambuf_iterator.h:204:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::istreambuf_iterator<_CharT, _Traits>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/vector:64:0,
+                 from globals.h:6,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_vector.h:1511:5: note: template<class _Tp, class _Alloc> bool std::operator==(const std::vector<_Tp, _Alloc>&, const std::vector<_Tp, _Alloc>&)
+     operator==(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_vector.h:1511:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::vector<_Tp, _Alloc>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/map:60:0,
+                 from globals.h:7,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_tree.h:323:5: note: template<class _Val> bool std::operator==(const std::_Rb_tree_iterator<_Tp>&, const std::_Rb_tree_const_iterator<_Val>&)
+     operator==(const _Rb_tree_iterator<_Val>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_tree.h:323:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::_Rb_tree_iterator<_Tp>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/map:60:0,
+                 from globals.h:7,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_tree.h:970:5: note: template<class _Key, class _Val, class _KeyOfValue, class _Compare, class _Alloc> bool std::operator==(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&, const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&)
+     operator==(const _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_tree.h:970:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/map:61:0,
+                 from globals.h:7,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_map.h:1000:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator==(const std::map<_Key, _Tp, _Compare, _Alloc>&, const std::map<_Key, _Tp, _Compare, _Alloc>&)
+     operator==(const map<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_map.h:1000:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::map<_Key, _Tp, _Compare, _Alloc>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/map:62:0,
+                 from globals.h:7,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_multimap.h:903:5: note: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator==(const std::multimap<_Key, _Tp, _Compare, _Alloc>&, const std::multimap<_Key, _Tp, _Compare, _Alloc>&)
+     operator==(const multimap<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_multimap.h:903:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::multimap<_Key, _Tp, _Compare, _Alloc>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/list:63:0,
+                 from globals.h:8,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_list.h:285:5: note: template<class _Val> bool std::operator==(const std::_List_iterator<_Tp>&, const std::_List_const_iterator<_Val>&)
+     operator==(const _List_iterator<_Val>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_list.h:285:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::_List_iterator<_Tp>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/list:63:0,
+                 from globals.h:8,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_list.h:1729:5: note: template<class _Tp, class _Alloc> bool std::operator==(const std::list<_Tp, _Alloc>&, const std::list<_Tp, _Alloc>&)
+     operator==(const list<_Tp, _Alloc>& __x, const list<_Tp, _Alloc>& __y)
+     ^
+/usr/include/c++/4.9/bits/stl_list.h:1729:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::list<_Tp, _Alloc>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/set:61:0,
+                 from globals.h:12,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_set.h:793:5: note: template<class _Key, class _Compare, class _Alloc> bool std::operator==(const std::set<_Key, _Compare, _Alloc>&, const std::set<_Key, _Compare, _Alloc>&)
+     operator==(const set<_Key, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_set.h:793:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::set<_Key, _Compare, _Alloc>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+In file included from /usr/include/c++/4.9/set:62:0,
+                 from globals.h:12,
+                 from Interface.h:3,
+                 from Interface.cpp:1:
+/usr/include/c++/4.9/bits/stl_multiset.h:777:5: note: template<class _Key, class _Compare, class _Alloc> bool std::operator==(const std::multiset<_Key, _Compare, _Alloc>&, const std::multiset<_Key, _Compare, _Alloc>&)
+     operator==(const multiset<_Key, _Compare, _Alloc>& __x,
+     ^
+/usr/include/c++/4.9/bits/stl_multiset.h:777:5: note:   template argument deduction/substitution failed:
+Interface.cpp:350:44: note:   ‘Tile’ is not derived from ‘const std::multiset<_Key, _Compare, _Alloc>’
+             if(guy.board.getCurrentTile()==' '){
+                                            ^
+Interface.cpp:353:48: error: no matching function for call to ‘Board::updateCurrentTile(char)’
+                 guy.board.updateCurrentTile('@');
+                                                ^
+Interface.cpp:353:48: note: candidate is:
+In file included from Player.h:4:0,
+                 from Interface.h:5,
+                 from Interface.cpp:1:
+Board.h:25:14: note: void Board::updateCurrentTile(Tile&)
+         void updateCurrentTile(Tile& otherTile);
+              ^
+Board.h:25:14: note:   no known conversion for argument 1 from ‘char’ to ‘Tile&’
+make[1]: *** [Interface.o] Error 1
+make: *** [all] Error 2

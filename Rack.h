@@ -6,11 +6,11 @@ class Rack{
     public:
         Rack();
 
-        void setCurrentTile(char let);
+        void setCurrentTile(Tile otherTile);
 
         void clearCurrentTile();
 
-        char getCurrentTile();
+        Tile getCurrentTile();
 
         int getNextBlankNdx();
 
@@ -24,12 +24,13 @@ class Rack{
 
         vector<string> toString();
 
-        void setTile(int ndx,char let);
+        void setTile(int ndx,Tile tile);
 
         friend ostream& operator<<(ostream& os,Rack& r);
         friend istream& operator>>(istream& is,Rack& r);
     private:
         void clearTile(int ndx);
+        Tile blank;//pass blank tiles by value to allow separate blanks
         string space;
         vector<Tile> tiles; 
         bool selecting;

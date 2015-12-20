@@ -35,7 +35,7 @@ class Interface{
         bool playerOnesTurn;//current player's turn: true is p1, false for p2
         bool choosingTile;
         Scores score;
-        vector<string> message;
+        vector<string> blankTileMessage;
         Player guy;
         bottomDisplay bottom;
         string outputFilePath;
@@ -46,7 +46,11 @@ class Interface{
 
         void writeGame();
 
+        void setBlankTileMessage(bool highlight);
+
         void defineWord();
+
+        void setBlank();
 
         string getInitialSize();
         

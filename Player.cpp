@@ -10,9 +10,11 @@
         return toReturn;
     }
     void Player::chooseTile(){
-        char currentTile=rack.getCurrentTile();
-        if(currentTile!=' '){
+        Tile currentTile=rack.getCurrentTile();
+        if(currentTile.getLetter()!=' '){
             //choose tile letter
+            currentTile.setTentative(true);
+            currentTile.toggleSelecting();
             board.updateCurrentTile(currentTile);
             rack.clearCurrentTile();
         }
@@ -22,6 +24,7 @@
         while(rndx!=-1){
             rack.setTile(rndx,bag.pullTile());
             rndx=rack.getNextBlankNdx();
+            cout<<"rndx "<<rndx<<endl;
         }
     }
     void Player::replaceTile(){

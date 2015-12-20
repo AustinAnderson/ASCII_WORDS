@@ -2,7 +2,26 @@
 
 using namespace std;
 
-void readAndShowRack(ifstream& in){
+void readAndShowTileBag(ifstream& in){
+    int numOfLetter;
+    Tile tile;
+    for(int i=0;i<27;i++){
+        cout<<" "<<char(i+int('@'))<<" ";
+    }
+    cout<<endl;
+    for(int i=0;i<27;i++){
+        in>>numOfLetter;
+        printf(" %-2d",numOfLetter);
+        for(int j=0;j<numOfLetter;j++){
+            in>>tile;
+        }
+    }
+    cout<<endl;
+}
+
+
+
+void readAndShowRack(ifstream& in, string l1, string l2){
     vector<Tile> tiles(7);
     for(int i=0;i<7;i++){
         in>>tiles[i];
@@ -10,11 +29,11 @@ void readAndShowRack(ifstream& in){
     for(int i=0;i<7;i++){
         cout<<tiles[i].line1();
     }
-    cout<<TXTCLRRST<<endl;
+    cout<<TXTCLRRST<<" "<<l1<<endl;
     for(int i=0;i<7;i++){
         cout<<tiles[i].line2();
     }
-    cout<<TXTCLRRST<<endl;
+    cout<<TXTCLRRST<<" "<<l2<<endl;
 }
 
 void readAndShowBoard(ifstream& in){
@@ -52,37 +71,39 @@ int main(int argc, char** argv){
     }
 
 
-
+    stringstream format;
+    string turn;
+    string score1;
+    string score2;
     int num;
     in>>num;
-    cout<<" it's player "<<(!num)+1<<" turn"<<endl;
+    format<<"  it's player "<<(!num)+1<<"'s turn";
+    turn=format.str();
+    format.str("");
     in>>num;
-    cout<<"score: p1="<<num;
+    format<<"   score: p1="<<num;
     in>>num;
-    cout<<" p2="<<num<<" (";
+    format<<" p2="<<num;
     in>>num;
+    score1=format.str();
+    format.str("");
+    format<<"(";
     if(!num){
-        cout<<"not ";
+        format<<"not ";
     }
-    cout<<"currently committing)"<<endl;
+    format<<"currently committing)";
+    score2=format.str();
     cout<<"tile bag contents:"<<endl;
-    for(int i=0;i<27;i++){
-        cout<<" "<<char(i+int('@'))<<" ";
-    }
-    cout<<endl;
-    for(int i=0;i<27;i++){
-        in>>num;
-        printf(" %-2d",num);
-    }
+    readAndShowTileBag(in);
     cout<<endl;
     string lastWord;
     in>>lastWord;
-    cout<<"last word played: "<<lastWord<<endl;
+    lastWord="last word played: "+lastWord;
     readAndShowBoard(in);
     cout<<BKGRND_WHT<<"my rack                            "<<TXTCLRRST<<endl;
-    readAndShowRack(in);
+    readAndShowRack(in,lastWord,turn);
     cout<<BKGRND_WHT<<"other's rack                       "<<TXTCLRRST<<endl;
-    readAndShowRack(in);
+    readAndShowRack(in,score1,score2);
 
     return 0;
 }

@@ -4,6 +4,8 @@
     Rack::Rack(){
         vector<Tile> placeHolder(7);
         tiles=placeHolder;
+        Tile theBlank;
+        blank=theBlank;
         selecting=false;
         ndx=0;
         space="        ";
@@ -11,14 +13,14 @@
             
 
 
-    void Rack::setCurrentTile(char let){
-        setTile(ndx,let);
+    void Rack::setCurrentTile(Tile otherTile){
+        setTile(ndx,otherTile);
     }
     void Rack::clearCurrentTile(){
         clearTile(ndx);
     }
-    char Rack::getCurrentTile(){
-        return tiles[ndx].getLetter();
+    Tile Rack::getCurrentTile(){
+        return tiles[ndx];
     }
     int Rack::getNextBlankNdx(){
         int ndx=0;
@@ -68,13 +70,16 @@
         return out;
     }
     
-    void Rack::setTile(int ndx,char let){
-        tiles[ndx].set(let,false,false);
+    void Rack::setTile(int ndx,Tile other){
+        tiles[ndx]=other;
     }
 //private:
     void Rack::clearTile(int ndx){
+        tiles[ndx]=blank;
+        /*
         tiles[ndx].set(' ',false,false);
         tiles[ndx].setMod("__");
+        */
     }
 
     ostream& operator<<(ostream& os,Rack& r){

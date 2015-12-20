@@ -17,7 +17,6 @@
         currentTentativeSum=0;
         xNdx=7;
         yNdx=7;
-        Tile blank(false,"__");
         vector<vector<Tile> > alloc(15,vector<Tile>(15,blank));
         mat=alloc;
         mat[0][3].setMod("TW");
@@ -39,13 +38,13 @@
         //reflect that forth vertically
         for(int i=0;i<8;i++){
             for(int j=8;j<15;j++){
-                mat[i][j]=mat[i][14-j];
+                mat[i][j].setMod(mat[i][14-j].getMod());
             }
         }
         //reflect that half horizontally
         for(int i=8;i<15;i++){
             for(int j=0;j<15;j++){
-                mat[i][j]=mat[14-i][j];
+                mat[i][j].setMod(mat[14-i][j].getMod());
             }
         }
         mat[xNdx][yNdx].set(' ',false,true);
@@ -88,8 +87,19 @@
         }
         mat[xNdx][yNdx].toggleSelecting();
     }
-    void Board::updateCurrentTile(char letter){
-        mat[xNdx][yNdx].set(letter);
+    void Board::setCurrentTileLetter(char let){
+        mat[xNdx][yNdx].setLetter(let);
+        if(currentPlacementValid()){
+            if(!currentWordsValid()){
+                currentTentativeSum=0;
+            }
+        }
+        else{
+            currentTentativeSum=0;
+        }
+    }
+    void Board::updateCurrentTile(Tile& otherTile){
+        mat[xNdx][yNdx]=otherTile;
         if(currentPlacementValid()){
             if(!currentWordsValid()){
                 currentTentativeSum=0;
@@ -100,7 +110,8 @@
         }
     }
     void Board::clearCurrentTile(){
-        mat[xNdx][yNdx].set(' ',false);
+        mat[xNdx][yNdx]=blank;
+        mat[xNdx][yNdx].toggleSelecting();
         if(currentPlacementValid()){
             if(!currentWordsValid()){
                 currentTentativeSum=0;
@@ -110,17 +121,15 @@
             currentTentativeSum=0;
         }
     }
-    string Board::clearAll(){
-        string toReturn="";
+    vector<Tile> Board::clearAll(){
+        vector<Tile> toReturn;
         for(int i=0;i<mat.size();i++){
             for(int j=0;j<mat[0].size();j++){
                 if(mat[i][j].isTentative()){
-                    toReturn.push_back(mat[i][j].getLetter());
+                    toReturn.push_back(mat[i][j]);
+                    mat[i][j]=blank;
                     if(i==xNdx&&j==yNdx){
-                        mat[i][j].set(' ',false);
-                    }
-                    else{
-                        mat[i][j].set(' ',false,false);
+                        mat[i][j].set(' ',false,true);//sets the cursor on that square
                     }
                     if(toReturn.size()>7){
                         cerr<<"board got out of sync your game is ruined :("<<endl;
@@ -135,8 +144,8 @@
         return toReturn;
     }
 
-    char Board::getCurrentTile(){
-        return mat[xNdx][yNdx].getLetter();
+    Tile Board::getCurrentTile(){
+        return mat[xNdx][yNdx];
     }
     vector<string> Board::mat2Str(){
         vector<string> current=formatCurrent();

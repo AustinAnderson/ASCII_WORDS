@@ -17,14 +17,7 @@
         keyBindings[DEFINE]='y';
         keyBindings[QUIT]='q';
         choosingTile=false;
-        message.push_back("      @ is blank");
-        message.push_back("         tile  ");
-        message.push_back("             ");
-        message.push_back("             ");
-        message.push_back("       type the");
-        message.push_back("       desired ");
-        message.push_back("        letter ");
-        message.push_back("");
+        setBlankTileMessage(false);
         setScreenBack=getInitialSize();
         //set bindings from file
         ifstream readInBindings;
@@ -52,6 +45,25 @@
         }
         bottom.init(&keyBindings,bindPreferencesPath);
     }
+    void Interface::setBlankTileMessage(bool highlight){
+        if(!blankTileMessage.empty()){
+            blankTileMessage.clear();
+        }
+        blankTileMessage.push_back("      @ is a blank");
+        blankTileMessage.push_back("         tile  ");
+        blankTileMessage.push_back("             ");
+        string hl="";
+        if(highlight){
+            hl=BKGRND_PRL;
+        }
+        blankTileMessage.push_back("  "+hl+"  hit confirm on    "+BKGRND_WHT);
+        blankTileMessage.push_back("  "+hl+" the tile and type  "+BKGRND_WHT);
+        blankTileMessage.push_back("  "+hl+" the desired letter "+BKGRND_WHT);
+        blankTileMessage.push_back("             ");
+        blankTileMessage.push_back("   put the tile back ");
+        blankTileMessage.push_back("     to return to @ ");
+    }
+
     void Interface::setOutputFile(string outPath){
         outputFilePath=outPath;
         checkSum=saveFileCheckSum();
@@ -70,15 +82,20 @@
     }
     void Interface::print(){
 
-        score.print();
+        score.print(isPlayerOnesTurn());
+        //0 is the vector of strings for the board
+        //1 is the vector of strings for the rack
         vector<vector<string> > boardRack=guy.toStrs();
+        int rackShift=5;
+        int messageSpace=1;
+        int messageStartLine=boardRack[1].size()+rackShift+messageSpace;
         for(int i=0;i<boardRack[0].size();i++){
             cout<<boardRack[0][i];
-            if(i>=5&&(i-5)<boardRack[1].size()){
-                cout<<boardRack[1][i-5];
+            if(i>=rackShift&&(i-rackShift)<boardRack[1].size()){
+                cout<<boardRack[1][i-rackShift];
             }
-            if(i>=(boardRack[0].size()-message.size())){
-                cout<<message[i-(boardRack[0].size()-message.size())];
+            if(i>=messageStartLine&&(i-messageStartLine)<blankTileMessage.size()){
+                cout<<blankTileMessage[(i-messageStartLine)];
             }
             cout<<endl;
         }
@@ -286,7 +303,12 @@
         if(guy.board.isTentative()){
             int blankspot=guy.rack.getNextBlankNdx();
             if(blankspot!=-1){
-                char putBack=guy.board.getCurrentTile();
+                Tile putBack=guy.board.getCurrentTile();
+                if(putBack.isBlank()){
+                    putBack.setLetter('@');
+                }
+                putBack.toggleSelecting();
+                putBack.setTentative(false);
                 guy.board.clearCurrentTile();
                 guy.rack.setTile(blankspot,putBack);
                 guy.board.setTentative(false);
@@ -296,8 +318,8 @@
 
         }
     }
-    void Interface::putAllBack(){
-        string tentatives=guy.board.clearAll();
+    void Interface::putAllBack(){//fix
+        vector<Tile> tentatives=guy.board.clearAll();
         for(int i=0;i<tentatives.size();i++){
             int blankspot=guy.rack.getNextBlankNdx();
             if(blankspot!=-1){
@@ -315,43 +337,43 @@
         system("clear");
         print();
     }
+    void Interface::setBlank(){
+        //visual que
+        bool done=false;
+        while(!done){
+            char in='\0';
+            setBlankTileMessage(true);
+            system("clear");
+            print();
+            while(!kbhit());
+            in=getch();
+            setBlankTileMessage(false);
+            if(in>='a'){//toupper
+                in=char(int(in)-int('a')+int('A'));
+            }
+            if(validLetters.find(in)==string::npos){
+                cerr<<"letter "<<in<<" invalid!"<<endl;
+                while(!kbhit());
+                getch();
+            }
+            else{
+                guy.board.setCurrentTileLetter(in);
+                done=true;
+            }
+        }
+        system("clear");
+        print();
+    }
     void Interface::toggleSelecting(){
-        if(' '==guy.board.getCurrentTile()){
+        if(' '==guy.board.getCurrentTile().getLetter()){
             choosingTile=!choosingTile;
             guy.rack.toggleSelecting();
             guy.board.toggleSelecting();
             system("clear");
             print();
         }
-        else if('@'==guy.board.getCurrentTile()){
-            /* right now, the game is implemented where a movement of a tile is
-             * simulated by the character for the tile on the board or rack
-             * being erased and then written over, then the tile looking up it's
-             * own new point value. this works ok if the character is the only
-             * state information that needs to be saved, as was the case before
-             * trying to add blank tiles, but doesn't work with the blank tile,
-             * because it needs to have one letter, and remember it is actually
-             * a blank tile even when it is moved.
-
-             * a solution to this problem would be to have the tiles as logical
-             * units and only move the pointer to the tile between the board and
-             * rack and tile bag, but this would require a major rewrite of most
-             * of the code. thinking the better route at this point would be to
-             * just have movements of tile also hold blank tile bool
-             */
-            //visual que here
-            char in='\0';
-            while(!kbhit());
-            in=getch();
-            if(in>='a'){
-                in=char(int(in)-int('a')+int('A'));
-            }
-            guy.board.updateCurrentTile(in);
-            if(guy.board.getCurrentTile()==' '){
-                while(!kbhit());
-                getch();
-                guy.board.updateCurrentTile('@');
-            }
+        else if('@'==guy.board.getCurrentTile().getLetter()){
+            setBlank();
         }
     }
     void Interface::up(){

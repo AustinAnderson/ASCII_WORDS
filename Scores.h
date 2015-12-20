@@ -13,7 +13,7 @@ class Scores{
 
         void toggleCommitting();
 
-        void print();
+        void print(bool p);
 
         friend ostream& operator<<(ostream& os,Scores& s);
         friend istream& operator>>(istream& is,Scores& s);

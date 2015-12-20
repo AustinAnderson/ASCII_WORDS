@@ -22,13 +22,15 @@ class Board{
 
         void right();
 
-        void updateCurrentTile(char letter);
+        void updateCurrentTile(Tile& otherTile);
+
+        void setCurrentTileLetter(char let);
 
         void clearCurrentTile();
 
-        string clearAll();
+        vector<Tile> clearAll();
 
-        char getCurrentTile();
+        Tile getCurrentTile();
 
         vector<string> mat2Str();
 
@@ -49,6 +51,7 @@ class Board{
         set<string> dictionary;
         vector<vector<Tile> > mat;
         vector<list<pair<int, int> > > tentatives;
+        Tile blank;
         int xNdx;
         int yNdx;
         int currentTentativeSum;

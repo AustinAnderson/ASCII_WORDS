@@ -26,18 +26,26 @@
     void Scores::toggleCommitting(){
         committing=!committing;
     }
-    void Scores::print(){
+    void Scores::print(bool p){
+        string hl1="";
+        string hl2=BKGRND_BLU;
+        if(p){
+            hl1=hl2;
+            hl2="";
+        }
         if(!committing){
             cout<<" ________________                                         _________________ "<<endl;          
-            cout<<"|                |                                       |                 |"<<endl;           
-            cout<<"| player 1: "<<points2Str(p1)<<" |                                       |  player 2: "<<points2Str(p2)<<" |"<<endl;           
-            cout<<"|________________|                                       |_________________|"<<endl;
+            cout<<hl1<<"|                |"<<BKGRND_WHT<<"                                       "<<hl2<<"|                 |"<<BKGRND_WHT<<endl;           
+            cout<<hl1<<"| player 1: "<<points2Str(p1)<<" |"<<BKGRND_WHT<<"                                       "
+                <<hl2<<"|  player 2: "<<points2Str(p2)<<" |"<<BKGRND_WHT<<endl;           
+            cout<<hl1<<"|________________|"<<BKGRND_WHT<<"                                       "<<hl2<<"|_________________|"<<BKGRND_WHT<<endl;
         }
         else{
             cout<<" ________________                                         _________________   "<<endl;            
-            cout<<"|                |         =======_______=======         |                 | "<<endl;             
-            cout<<"| player 1: "<<points2Str(p1)<<" |          ) Play Move? Y/N (           |  player 2: "<<points2Str(p2)<<" | "<<endl;             
-            cout<<"|________________|         /__====******====__\\          |_________________| "<<endl;              
+            cout<<hl1<<"|                |"<<BKGRND_WHT<<"         =======_______=======         "<<hl2<<"|                 | "<<BKGRND_WHT<<endl;             
+            cout<<hl1<<"| player 1: "<<points2Str(p1)<<" |"<<BKGRND_WHT
+                <<"          ) Play Move? Y/N (           "<<hl2<<"|  player 2: "<<points2Str(p2)<<" | "<<BKGRND_WHT<<endl;             
+            cout<<hl1<<"|________________|"<<BKGRND_WHT<<"         /__====******====__\\          "<<hl2<<"|_________________| "<<BKGRND_WHT<<endl;              
         }
     }
 //private:

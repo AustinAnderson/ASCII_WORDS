@@ -5,8 +5,11 @@ class Tile{
     public:
         Tile();
 
+        Tile(char let);
+
         Tile(bool sel,string mod);
 
+        Tile& operator=(const Tile& rhs);
         char getLetter();
 
         int getPoints();
@@ -29,6 +32,10 @@ class Tile{
 
         void setTentative(bool newVal);
 
+        void setLetter(char let);
+
+        bool isBlank();
+
         //only to be called during construction of board
         void setMod(string newMod);
 
@@ -50,6 +57,7 @@ class Tile{
         char letter;
         bool tentative;
         bool selecting;
+        bool blank;
         string modifier;
 };
 #endif

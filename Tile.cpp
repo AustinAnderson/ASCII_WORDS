@@ -1,22 +1,52 @@
 #include "Tile.h"
 //public
     Tile::Tile(){
+        blank=false;
         setValidMods();
         setMap();
         set(' ',false,false);
         setMod("__");
     }
+    Tile::Tile(char let){
+        blank=false;
+        setValidMods();
+        setMap();
+        set(let,false,false);
+        setMod("__");
+    }
     Tile::Tile(bool sel,string mod){
+        blank=false;
         setValidMods();
         setMap();
         set(' ',false,sel);
         setMod(mod);
     }
+//operator = needs to be defined
+//to make sure modifier is not changed when data is copied
+    Tile& Tile::operator=(const Tile& rhs){
+
+        points=rhs.points;//only read, so just need one
+        previousState=rhs.previousState;
+        validModifiers=rhs.validModifiers;
+        top=rhs.top;
+        
+        letter=rhs.letter;
+        tentative=rhs.tentative;
+        selecting=rhs.selecting;
+        blank=rhs.blank;
+        //modifier != rhs.modifier;
+        return *this;
+    }
+
     char Tile::getLetter(){
         return letter;
     }
     int Tile::getPoints(){
-        return (*points)[letter];
+        int toReturn=(*points)[letter];
+        if(blank){
+            toReturn=0;
+        }
+        return toReturn;
     }
     string Tile::getMod(){
         return modifier;
@@ -49,17 +79,30 @@
         return getColor()+top+BKGRND_WHT+"|";
     }
     string Tile::line2(){
-        string toReturn=modifier+points2Str((*points)[letter]);
+        string toReturn=modifier+points2Str(getPoints());
         return getColor()+toReturn+BKGRND_WHT+"|";
     }
     void Tile::toggleSelecting(){
         selecting=!selecting;
         setTop();
     }
+    void Tile::setLetter(char let){
+        if(blank){//can only be used if it's a blank tile
+            letter=let;
+            setTop();
+        }
+    }
+    bool Tile::isBlank(){
+        return blank;
+    }
     //is selecting is true if tile is |_| selector,
     //isTentative is true if the tile is part of a tentative move
     void Tile::set(char newLetter, bool isTentative,bool isSelecting){
         //save previous state here
+        if(newLetter=='@'||letter=='@'){
+            cout<<"blank=true"<<endl;
+            blank=true;
+        }
         if(validLetters.find(newLetter)==string::npos){
             cerr<<"letter "<<newLetter<<" invalid!"<<endl;
             newLetter=' ';
@@ -181,7 +224,7 @@
         else{
             os<<t.letter<<" ";
         }
-        os<<t.tentative<<" "<<t.modifier<<" ";
+        os<<t.tentative<<" "<<t.modifier<<" "<<t.blank;
         return os;
     }
     istream& operator>>(istream& is,Tile& t){
@@ -191,7 +234,7 @@
             letter=' ';
         }
         t.letter=letter;
-        is>>t.tentative>>t.modifier;
+        is>>t.tentative>>t.modifier>>t.blank;
         t.setTop();
         return is;
     }
