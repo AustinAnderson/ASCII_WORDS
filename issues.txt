@@ -1,0 +1,4 @@
+current issues:
+no ability to pass turn (maybe make blank word valid?)
+
+no valid handling for when there are no more tiles

@@ -20,11 +20,13 @@
         }
     }
     void Player::refilTiles(){
-        int rndx=rack.getNextBlankNdx();
-        while(rndx!=-1){
-            rack.setTile(rndx,bag.pullTile());
-            rndx=rack.getNextBlankNdx();
-            cout<<"rndx "<<rndx<<endl;
+        if(!bag.isEmpty()){
+            int rndx=rack.getNextBlankNdx();
+            while(rndx>=0){
+                rack.setTile(rndx,bag.pullTile());
+                rndx=rack.getNextBlankNdx();
+                cout<<"rndx "<<rndx<<endl;
+            }
         }
     }
     void Player::replaceTile(){

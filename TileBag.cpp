@@ -26,7 +26,11 @@
         return bag[int(key)-int('@')].size();
     }
     bool TileBag::isEmpty(){
-        return empty;
+        int tilesLeft=0;
+        for(unsigned int i=0;i<bag.size();i++){
+            tilesLeft+=bag[i].size();
+        }
+        return tilesLeft==0;
     }
     Tile TileBag::pullTile(){
         Tile toReturn=blank;
@@ -41,11 +45,12 @@
         }
 
         //get a letter index
-        int ndx=rand()%nonEmpty.size();
+        int ndx=-1;
         if(nonEmpty.empty()){//check if the bag is empty
             empty=true;
         }
         else{//if not empty
+            ndx=rand()%nonEmpty.size();
             toReturn=nonEmpty[ndx]->back();
             //cout<<toReturn.getLetter()<<endl;
             //cout<<bag[int(toReturn.getLetter())-int('@')].size()<<endl;
