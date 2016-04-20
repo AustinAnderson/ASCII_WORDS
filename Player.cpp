@@ -1,8 +1,5 @@
 #include "Player.h"
 //public:
-    Player::Player(){
-        int ndx=0;
-    }
     vector<vector<string> > Player::toStrs(){
         vector<vector<string> > toReturn;
         toReturn.push_back(board.mat2Str());

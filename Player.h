@@ -6,8 +6,6 @@
 #include "Rack.h"
 class Player{
     public:
-        Player();
-
         vector<vector<string> > toStrs();
 
         void chooseTile();
