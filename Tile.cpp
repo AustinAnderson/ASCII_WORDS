@@ -100,7 +100,6 @@
     void Tile::set(char newLetter, bool isTentative,bool isSelecting){
         //save previous state here
         if(newLetter=='@'||letter=='@'){
-            cout<<"blank=true"<<endl;
             blank=true;
         }
         if(validLetters.find(newLetter)==string::npos){
